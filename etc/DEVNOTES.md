@@ -38,3 +38,7 @@ Por enquanto apenas planejar e estudar.
 * Finalmente consegui enviar um request com resposta 201. Agora posso começar a pensar no resto da implementação.
 
 * Fiz um gerador de csv simples em node para 1- treinar javascript; 2- gerar csv gigantes para testes posteriores
+
+* Estou lendo sobre streams e execuções synch/asynch. Aparentemente será impossível continuar sem o conhecimento disso.
+
+* Já tenho conhecimento para devar a solução mínima, isto é, com tempo de processamento não otimizado. Este será o MVP e devo terminar hoje se tudo der certo.
