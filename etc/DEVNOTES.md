@@ -31,4 +31,4 @@ Por enquanto apenas planejar e estudar.
 
 * Montei uma arquitetura que faz sentido para mim. Agora é validar isso e escolher as ferramentas/ how-to-do-it.
 
-![Arquitetura](/app-mundipagg/etc/resources/diagram.png)
+![Arquitetura](https://raw.githubusercontent.com/gabrieltet/app-mundipagg/etc/resources/diagram.png)
