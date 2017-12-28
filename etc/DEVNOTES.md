@@ -32,3 +32,7 @@ Por enquanto apenas planejar e estudar.
 * Montei uma arquitetura que faz sentido para mim. Agora é validar isso e escolher as ferramentas/ how-to-do-it.
 
 ![Arquitetura](https://raw.githubusercontent.com/gabrieltet/app-mundipagg/master/etc/resources/diagram.png)
+
+* Estou enviando vários requests seguindo a documentação e gerei um bando de erros. Me pergunto se vão ver isso.
+
+* Finalmente consegui enviar um request com resposta 201. Agora posso começar a pensar no resto da implementação.
