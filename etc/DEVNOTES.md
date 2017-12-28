@@ -4,6 +4,10 @@ Resumo e registro em texto de processos mentais. Este arquivo é um fluxograma d
 
 Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra aprender a usar essa plataforma, faremos aqui.
 
+## Tasklist
+
+Por enquanto apenas planejar e estudar.
+
 ## Brainstorms: Perguntas
 *Eu preciso fazer um sistema que pode processar algo muito leve ou muito pesado, porém, precisa ser capaz de processar rápido. Obviamente existem soluções e arquiteturas para isso. Não querem que eu invente uma plataforma nova pra solucionar a velocidade.
 *O diferencial do validador me parece ser algo necessário. É algo que surgiria naturalmente se eu tivesse que pensar em como fazer esse desafio. Tenho familiariade com validações em C e Python porque isso é basicamente a matéria de Computação I e II da faculdade. Estou pensando em fazer o resto da aplicação em Node. Será que é muito feio fazer em multilanguage?
