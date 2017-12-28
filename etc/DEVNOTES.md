@@ -36,3 +36,5 @@ Por enquanto apenas planejar e estudar.
 * Estou enviando vários requests seguindo a documentação e gerei um bando de erros. Me pergunto se vão ver isso.
 
 * Finalmente consegui enviar um request com resposta 201. Agora posso começar a pensar no resto da implementação.
+
+* Fiz um gerador de csv simples em node para 1- treinar javascript; 2- gerar csv gigantes para testes posteriores
