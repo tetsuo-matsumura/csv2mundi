@@ -1,8 +1,8 @@
 //Gerador de CSV com dados de cartões de crédito
 //Inputs: [2]Quantidade de Linhas, [3]debug, [4]Nome do arquivo(default=output.csv)
 //Outputs: nomedoarquivo.csv
+console.time('execution time');
 var fs = require('fs')
-console.log(process.argv[4]);
 if (process.argv[4] !== undefined ){
 	var filename = process.argv[4]+".csv";
 } else {
@@ -16,7 +16,6 @@ function rng(max){
 };
 
 generateAmount = parseInt(process.argv[2]);
-console.log(generateAmount);
 
 function generateLine(){
 	var result = "";
@@ -54,3 +53,5 @@ if (process.argv[3] == "debug" || process.argv[3] == "1") {
 	debug = generateLine();
 	console.log(debug);
 }
+console.log(generateAmount+" lines were written in "+filename)
+console.timeEnd('execution time')
