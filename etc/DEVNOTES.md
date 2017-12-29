@@ -32,6 +32,7 @@ Por enquanto apenas planejar e estudar.
 
 ## 28/12
 
+
 * Montei uma arquitetura que faz sentido para mim. Agora é validar isso e escolher as ferramentas/ how-to-do-it.
 
 ![Arquitetura](https://raw.githubusercontent.com/gabrieltet/app-mundipagg/master/etc/resources/diagram.png)
@@ -43,6 +44,10 @@ Por enquanto apenas planejar e estudar.
 * Fiz um gerador de csv simples em node para 1- treinar javascript; 2- gerar csv gigantes para testes posteriores
 
 * Estou lendo sobre streams e execuções synch/asynch. Aparentemente será impossível continuar sem o conhecimento disso.
+
+* Já tenho conhecimento para devar a solução mínima, isto é, com tempo de processamento não otimizado. Este será o MVP e devo terminar hoje se tudo der certo.
+
+
 
 * Já tenho conhecimento para devar a solução mínima, isto é, com tempo de processamento não otimizado. Este será o MVP e devo terminar hoje se tudo der certo.
 
