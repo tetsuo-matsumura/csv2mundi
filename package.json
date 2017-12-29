@@ -1,0 +1,26 @@
+{
+  "name": "csv2mundi",
+  "version": "1.0.0",
+  "description": "Send .csv data to MundiPagg with the legacy version of MundiPagg-API.",
+  "main": "app.js",
+  "scripts": {
+    "test": "nill"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrieltet/app-mundipagg.git"
+  },
+  "keywords": [
+    "mundipag",
+    "csv",
+    "node",
+    "javascript",
+    "mongodb"
+  ],
+  "author": "Tetsuo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrieltet/app-mundipagg/issues"
+  },
+  "homepage": "https://github.com/gabrieltet/app-mundipagg#readme"
+}
