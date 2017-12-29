@@ -9,6 +9,9 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 Por enquanto apenas planejar e estudar.
 
 ## Brainstorms: Perguntas
+
+## 27/12
+
 * Eu preciso fazer um sistema que pode processar algo muito leve ou muito pesado, porém, precisa ser capaz de processar rápido. Obviamente existem soluções e arquiteturas para isso. Não querem que eu invente uma plataforma nova pra solucionar a velocidade.
 
 
@@ -27,7 +30,7 @@ Por enquanto apenas planejar e estudar.
 
 * Devo comittar em português ou inglês?
 
-
+## 28/12
 
 * Montei uma arquitetura que faz sentido para mim. Agora é validar isso e escolher as ferramentas/ how-to-do-it.
 
@@ -42,3 +45,7 @@ Por enquanto apenas planejar e estudar.
 * Estou lendo sobre streams e execuções synch/asynch. Aparentemente será impossível continuar sem o conhecimento disso.
 
 * Já tenho conhecimento para devar a solução mínima, isto é, com tempo de processamento não otimizado. Este será o MVP e devo terminar hoje se tudo der certo.
+
+## 29/12
+
+* Repensei na arquitetura e estou em dúvida de duas maneiras de implementação. Uma envolve um midpoint com um bando de dados e outra envolve processos mais complexos. Vou entrar em contato em breve com o Ricardo ou Nathan para ver qual é mais interesssante de se utilizar..
