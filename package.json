@@ -4,7 +4,7 @@
   "description": "Send .csv data to MundiPagg with the legacy version of MundiPagg-API.",
   "main": "app.js",
   "scripts": {
-    "test": "nill"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
