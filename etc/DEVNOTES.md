@@ -48,12 +48,9 @@ Por enquanto apenas planejar e estudar.
 * Já tenho conhecimento para devar a solução mínima, isto é, com tempo de processamento não otimizado. Este será o MVP e devo terminar hoje se tudo der certo.
 
 
-
-* Já tenho conhecimento para devar a solução mínima, isto é, com tempo de processamento não otimizado. Este será o MVP e devo terminar hoje se tudo der certo.
-
 ## 29/12
 
-* Repensei na arquitetura e estou em dúvida de duas maneiras de implementação. Uma envolve um midpoint com um bando de dados e outra envolve processos mais complexos. Vou entrar em contato em breve com o Ricardo ou Nathan para ver qual é mais interesssante de se utilizar..
+* Repensei na arquitetura e estou em dúvida de duas maneiras de implementação. Uma envolve um midpoint com um bando de dados e outra envolve processos mais complexos. Vou entrar em contato em breve com o Ricardo ou Nathan para ver qual é mais interesssante de se utilizar. Não tenho como fazer o MVP sem decidir que tipo de implementação vou seguir. Também é melhor entender melhor como estrutura-se um app de node para tornar o deploy mais fácil posteriormente.
 
 ## 30/12
 
