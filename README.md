@@ -4,7 +4,7 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
 
 ## Tecnologias
  - JavaScript (Node.js)
-   - node-csv [(Github)](https://github.com/adaltas/node-csv)
+   - PapaParse [(Github)](https://github.com/mholt/PapaParse)
    - formidable [(Github)](https://github.com/felixge/node-formidable)
  - MongoDB
  - Express
