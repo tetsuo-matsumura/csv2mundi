@@ -57,9 +57,11 @@ Por enquanto apenas planejar e estudar.
 
 ## 30/12
 
-* Vou começar a listar os guias que estou lendo. Infelizmente os que eu li anterior a esta postagem serão adicionados apenas se eu ler novamente.
+* Vou começar a listar os guias que estou lendo. Infelizmente os que foram lidos antes dessa postagem serão postados apenas se forem lidos novamente.
 
 * Consegui enviar uma transação para o dashboard da Mundi a partir de uma query de consulta no MongoDB. :D!
+
+* Vou estudar sobre as funcionalidade async e non-blocking do Node. Não entendo muito bem o conceito de callback.
 
 ## Guias
 
