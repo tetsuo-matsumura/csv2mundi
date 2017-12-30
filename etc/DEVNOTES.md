@@ -62,6 +62,8 @@ Por enquanto apenas planejar e estudar.
 
 * Promises são bem interessantes. Sinto que entendo como a internet toda funciona agora. 
 
+* Acabei de descobrir um parser de csv incrível chamado papaparse. Ele conseguiu processar meu arquivo de 300MB em menos de 1 minuto. Ele também soluciona outros problemas como a detecção de linhas novas e tem suporte para stream. 
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
