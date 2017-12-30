@@ -54,3 +54,17 @@ Por enquanto apenas planejar e estudar.
 ## 29/12
 
 * Repensei na arquitetura e estou em dúvida de duas maneiras de implementação. Uma envolve um midpoint com um bando de dados e outra envolve processos mais complexos. Vou entrar em contato em breve com o Ricardo ou Nathan para ver qual é mais interesssante de se utilizar..
+
+## 30/12
+
+* Vou começar a listar os guias que estou lendo. Infelizmente os que eu li anterior a esta postagem serão adicionados apenas se eu ler novamente.
+
+* Consegui enviar uma transação para o dashboard da Mundi a partir de uma query de consulta no MongoDB. :D!
+
+## Guias
+
+- http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
+
+- https://www.udemy.com/the-complete-nodejs-developer-course-2/
+
+- http://stackabuse.com/reading-and-writing-json-files-with-node-js/
