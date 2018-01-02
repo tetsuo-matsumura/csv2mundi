@@ -64,6 +64,10 @@ Por enquanto apenas planejar e estudar.
 
 * Acabei de descobrir um parser de csv incrível chamado papaparse. Ele conseguiu processar meu arquivo de 300MB em menos de 1 minuto. Ele também soluciona outros problemas como a detecção de linhas novas e tem suporte para stream. 
 
+##01/01
+
+* Feliz ano novo!
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
