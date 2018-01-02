@@ -7,11 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./bin/www"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/gabrieltet/app-mundipagg.git"
   },
-    "keywords": [
+  "keywords": [
     "mundipag",
     "csv",
     "node",
@@ -29,11 +29,12 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
-    "express": "~4.15.5",
+    "express": "^4.16.2",
     "formidable": "^1.1.1",
     "mongodb": "^3.0.1",
-    "morgan": "~1.9.0",
+    "mongoose": "^5.0.0-rc1",
+    "morgan": "^1.9.0",
     "papaparse": "^4.3.6",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "^2.4.5"
   }
 }
