@@ -1,14 +1,22 @@
 var express = require('express');
+var app = express();
+var mongoose = require('mongoose');
+var Transaction = require('./api/models/transactionModel');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// connect to mongo using mongoose
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/transactions'); 
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+var routes = require('./api/routes/transactionRoutes');
+routes(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
