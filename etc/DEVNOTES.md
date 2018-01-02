@@ -64,9 +64,16 @@ Por enquanto apenas planejar e estudar.
 
 * Acabei de descobrir um parser de csv incrível chamado papaparse. Ele conseguiu processar meu arquivo de 300MB em menos de 1 minuto. Ele também soluciona outros problemas como a detecção de linhas novas e tem suporte para stream. 
 
-##01/01
+## 01/01
 
 * Feliz ano novo!
+
+## 02/01
+
+* Estou conseguindo usar o papaparse para mandar o csv para o mongo e estou conseguindo mandar collections do mongo para o api da mundi. Agora preciso implementar essas duas funções no express para ter o mínimo do proof of concept pronto.
+
+* Estou me divertindo com os resultados se tornando concretos
+![fun](https://i.imgur.com/ylHnO4Z.png)
 
 ## Guias
 
