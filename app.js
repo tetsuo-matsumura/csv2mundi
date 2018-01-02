@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 
 // connect to mongo using mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/transactions'); 
+mongoose.connect('mongodb://localhost:27017/csv2mundi'); 
 
 var index = require('./routes/index');
 var users = require('./routes/users');
