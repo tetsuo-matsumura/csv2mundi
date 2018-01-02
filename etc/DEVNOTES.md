@@ -72,6 +72,9 @@ Por enquanto apenas planejar e estudar.
 
 * Estou conseguindo usar o papaparse para mandar o csv para o mongo e estou conseguindo mandar collections do mongo para o api da mundi. Agora preciso implementar essas duas funções no express para ter o mínimo do proof of concept pronto.
 
+* Estou me divertindo com os resultados se tornando concretos
+![fun](https://i.imgur.com/ylHnO4Z.png)
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
