@@ -84,3 +84,5 @@ Por enquanto apenas planejar e estudar.
 - http://stackabuse.com/reading-and-writing-json-files-with-node-js/
 
 - https://www.npmjs.com/package/express-fileupload
+
+- https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
