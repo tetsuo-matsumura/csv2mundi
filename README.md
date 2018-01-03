@@ -13,4 +13,11 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
    - Express
    
 
-## Work in Progress
+## Pré-requisitos
+
+ - npm
+ - mongodb 3.0.1 +
+
+## Instalação
+
+## Uso
