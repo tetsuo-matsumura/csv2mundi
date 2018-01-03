@@ -83,6 +83,14 @@ Por enquanto apenas planejar e estudar.
 
 * Me lembrei da entrevista e fiquei pensando nas coisas legais que poderiam ser feitas com as tecnologias de hoje no mundo de servidores privados de Ragnarok. Lembrei de um maluco russo que conseguiu criar um frame dentro do jogo que carregava o netflix a partir de um item. Será que dá pra integrar a api da mundi com o rag?
 
+* Eu não vou fazer um flowchart agora mas na minha cabeça o flow da API é da seguinte forma.
+
+  - Frontend -> Recebe o arquivo .csv e envia pra API
+  - API -> Recebe o arquivo .csv, manda pro Mongo no modelo da Mundi e retorna o resultado pro Front
+  - Frontend -> Envia o pedido de processamento dos pedidos enviados
+  - API -> Recebe o processamento, pede pro Mongo os dados e envia pra API da Mundi. Envia o resultado devolta pro Mongo (Status: Complete).
+  - Frontend -> Pede para a API todos os pedidos que estão "complete", seu arquivo de origem, data de envio e processamento. Também retorna informações sobre o arquivo buscando pelo (originalFile: arquivo.csv).
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
