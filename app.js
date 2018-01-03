@@ -7,10 +7,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var setup = require('./setup.js');
 
 // connect to mongo using mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/csv2mundi'); 
+mongoose.connect(setup.mongourl); 
 
 var index = require('./routes/index');
 var users = require('./routes/users');
