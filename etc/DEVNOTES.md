@@ -81,6 +81,8 @@ Por enquanto apenas planejar e estudar.
 
 * Todas as vezes que eu aprendo algo novo eu tenho vontade de reescrever tudo. Vou purge todo o default do express que eu não entendo e escrever em cima do que eu já conheço. Como o objetivo é aprender, não devo ter nada no código que eu não sei como funciona.
 
+* Me lembrei da entrevista e fiquei pensando nas coisas legais que poderiam ser feitas com as tecnologias de hoje no mundo de servidores privados de Ragnarok. Lembrei de um maluco russo que conseguiu criar um frame dentro do jogo que carregava o netflix a partir de um item. Será que dá pra integrar a api da mundi com o rag?
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
