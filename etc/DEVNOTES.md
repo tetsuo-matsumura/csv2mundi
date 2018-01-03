@@ -75,6 +75,10 @@ Por enquanto apenas planejar e estudar.
 * Estou me divertindo com os resultados se tornando concretos
 ![fun](https://i.imgur.com/ylHnO4Z.png)
 
+## 03/01
+
+* Estou um pouco travado com o front-end da API. Vou estudar um pouco de Angular pois ele me parece ter as soluções necessárias para os meus problemas.
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
