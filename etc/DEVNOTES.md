@@ -79,6 +79,8 @@ Por enquanto apenas planejar e estudar.
 
 * Estou um pouco travado com o front-end da API. Vou estudar um pouco de Angular pois ele me parece ter as soluções necessárias para os meus problemas.
 
+* Todas as vezes que eu aprendo algo novo eu tenho vontade de reescrever tudo. Vou purge todo o default do express que eu não entendo e escrever em cima do que eu já conheço. Como o objetivo é aprender, não devo ter nada no código que eu não sei como funciona.
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
