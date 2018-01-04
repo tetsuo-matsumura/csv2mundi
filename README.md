@@ -8,9 +8,13 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
      - PapaParse [(Github)](https://github.com/mholt/PapaParse)
      - formidable [(Github)](https://github.com/felixge/node-formidable)
      - mongoose
- - MongoDB
+ - DB
+   - MongoDB
  - Framework
    - Express
+ - Frontend
+   - Angular 4
+   - Bootstrap + Font Awesome
    
 
 ## Pré-requisitos
