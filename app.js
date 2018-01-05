@@ -2,7 +2,6 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-var Transaction = require('./api/models/transactionModel');
 var port = process.env.PORT || 8080;
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -18,10 +17,6 @@ mongoose.connect(setup.mongourl);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Failed to connect to MongoDB: '));
 
-//api routes
-var routes = require('./api/routes/transactionRoutes');
-routes(app);
-
 // configurations ===================
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -32,6 +27,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('X-HTTP-Method-Override')); 
 
+//app routes
+require('./app/routes.js')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
