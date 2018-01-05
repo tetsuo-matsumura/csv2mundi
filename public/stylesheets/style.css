@@ -9,6 +9,8 @@ body {}
 #logo h1{font-size: 35px;}
 #logo a {color: #00B7FF;}
 
+/*Panel*/
+.panel {width:300px;}
 /*Forms*/
 input[type="submit"]
 {

@@ -37,32 +37,86 @@
 				<a class="navbar-brand" href="#">csv2mundi</a>
 			</div>
 			<ul class="nav navbar-nav">
-		      <li class="active"><a href="#">Upload</a></li>
-		      <li><a href="#">My files</a></li>
+		      <li ng-class="{active: isActive('/upload')}"><a href="#">Upload</a></li>
+		      <li ng-class="{active: isActive('/files')}"><a href="#">My files</a></li>
 		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+      			<li>
+      				<a href="https://github.com/gabrieltet/csv2mundi">
+      				<i class="fa fa-github" aria-hidden="true"></i> GitHub</a>
+      			</li>
+    		</ul>
  		 </div>
 	</nav>
 	<!-- Main container -->
 	<div class="container">
-		<!-- Header -->
 		<div class="page-header text-center">
-			<h1>Upload you .csv file <i class="fa fa-upload" aria-hidden="true"></i></h1>
+			<h1>My files | <span class="label label-info">{0 files}</span></h1>
 		</div>
-		<!-- Upload form -->
-		<div id="upload-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group text-center">
+		<div class="row">
 
-						<input type="file" class="form-control input-lg text-center" ng-model="formData.text">
-						<p class="help-block">Select or drag and drop a .csv file here.</p>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+							{status_message} 
 					</div>
+					<div class="panel-body">
 
-					
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="uploadCSV()">Upload CSV</button>
-				</form>
+						<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+						<p class="help-block">{filename} </p>
+					</div>
+				</div>
 			</div>
-		</div>
+
+			<div class="col-md-4">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+							<i class="fa fa-check-circle-o" aria-hidden="true"></i> Ready to parse!
+					</div>
+					<div class="panel-body">
+
+						<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+						<p class="help-block">test.csv</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="panel panel-success">
+					<div class="panel-heading">
+							<i class="fa fa-check-circle" aria-hidden="true"></i> Complete!
+					</div>
+					<div class="panel-body">
+						<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+						<p class="help-block">november.csv</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="panel panel-warning">
+					<div class="panel-heading">
+							<i class="fa fa-exclamation-circle" aria-hidden="true"></i> This file needs atention!
+					</div>
+					<div class="panel-body">
+						<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+						<p class="help-block">かいしゃ.csv</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-danger">
+					<div class="panel-heading">
+							<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occured!
+
+					</div>
+					<div class="panel-body">
+						<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+						<p class="help-block">fsefs.txt</p>
+					</div>
+				</div>
+			</div>
+		<div>
 	</div>
 </body>
 </html>
