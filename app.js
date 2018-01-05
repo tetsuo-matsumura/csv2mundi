@@ -12,10 +12,16 @@ var setup = require('./setup.js');
 // connect to mongo using mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(setup.mongourl); 
+var db = mongoose.connection;
 
+//connection error event
+db.on('error', console.error.bind(console, 'Failed to connect to MongoDB: '));
+
+//user routes
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+//api routes
 var routes = require('./api/routes/transactionRoutes');
 routes(app);
 
