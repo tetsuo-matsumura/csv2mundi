@@ -91,6 +91,13 @@ Por enquanto apenas planejar e estudar.
   - API -> Recebe o processamento, pede pro Mongo os dados e envia pra API da Mundi. Envia o resultado devolta pro Mongo (Status: Complete).
   - Frontend -> Pede para a API todos os pedidos que estão "complete", seu arquivo de origem, data de envio e processamento. Também retorna informações sobre o arquivo buscando pelo (originalFile: arquivo.csv).
 
+## 05/01
+ 
+* Ainda estou estudando Angular, estou preparando os templates e montando a UX para jogar o código quando estiver pronto.
+
+![ux1](https://i.imgur.com/fKUpHnJ.png)
+![ux2](https://i.imgur.com/RAhZp0I.png)
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
