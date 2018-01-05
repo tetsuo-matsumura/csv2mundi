@@ -1,0 +1,68 @@
+<!doctype html>
+
+<!-- Angular Bootstrap -->
+<html ng-app="csv2Mundi">
+<head>
+	<!-- Meta codes -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>csv2mundi</title>
+	<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
+
+	<!-- 3rd Party Code -->
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+
+	<!-- Stylesheet -->
+	<link rel='stylesheet' href='/stylesheets/normalize.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+	<!-- Engine -->
+
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+
+	<script src="js/controllers/main.js"></script> 
+	<script src="js/services/csv2mundi.js"></script> 
+	<script src="js/core.js"></script>
+
+</head>
+<!-- bootstrap the controller -->
+<body ng-controller="mainController">
+	<!-- Navigation bar -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">csv2mundi</a>
+			</div>
+			<ul class="nav navbar-nav">
+		      <li class="active"><a href="#">Upload</a></li>
+		      <li><a href="#">My files</a></li>
+		    </ul>
+ 		 </div>
+	</nav>
+	<!-- Main container -->
+	<div class="container">
+		<!-- Header -->
+		<div class="page-header text-center">
+			<h1>Upload you .csv file <i class="fa fa-upload" aria-hidden="true"></i></h1>
+		</div>
+		<!-- Upload form -->
+		<div id="upload-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group text-center">
+
+						<input type="file" class="form-control input-lg text-center" ng-model="formData.text">
+						<p class="help-block">Select or drag and drop a .csv file here.</p>
+					</div>
+
+					
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="uploadCSV()">Upload CSV</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
