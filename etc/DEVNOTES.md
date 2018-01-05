@@ -96,7 +96,10 @@ Por enquanto apenas planejar e estudar.
 * Ainda estou estudando Angular, estou preparando os templates e montando a UX para jogar o código quando estiver pronto.
 
 ![ux1](https://i.imgur.com/fKUpHnJ.png)
-![ux2](https://i.imgur.com/RAhZp0I.png)
+(Template)
+
+![ux2](https://i.imgur.com/nr0nxRR.png)
+(Funcional :D!)
 
 ## Guias
 
