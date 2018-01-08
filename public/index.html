@@ -82,13 +82,13 @@
 		<!-- Upload form -->
 			<div id="upload-form" class="row" name="Upload">
 				<div class="col-sm-8 col-sm-offset-2 text-center">
-					<form>
+					<form enctype="multipart/form-data">
 						<div class="form-group text-center">
-							<input type="file" class="form-control input-lg text-center" ng-model="formData.text">
+							<input type="file" class="form-control input-lg text-center" ng-model="fileData.name" accept=".csv">
 							<p class="help-block">Select or drag and drop a .csv file here.</p>
 						</div>
 						
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="uploadCSV()">Upload CSV</button>
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="uploadCSV()">Submit</button>
 					</form>
 			</div>
 		</div>
