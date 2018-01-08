@@ -6,7 +6,10 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 
 ## Tasklist
 
-Por enquanto apenas planejar e estudar.
+* Finalizar templates
+* Implementar upload
+* Criar endpoints
+* Tratamento de erro
 
 ## Brainstorms: Perguntas
 
