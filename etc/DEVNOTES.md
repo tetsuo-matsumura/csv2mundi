@@ -6,8 +6,8 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 
 ## Tasklist
 
-* Finalizar templates
-* Implementar upload
+* Finalizar templates (Done!)
+* Implementar upload (Done!)
 * Criar endpoints
 * Tratamento de erro
 
@@ -103,6 +103,12 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 
 ![ux2](https://i.imgur.com/nr0nxRR.png)
 (Funcional :D!)
+
+## 08/01
+
+* Os commits estão ficando bem grandes. Como agora é mais mão na massa + correções, não estou atualizando muito o Dev notes. Abaixo uma screen do upload funcionando :D!
+
+![up1](https://i.imgur.com/DFrEG5o.png)
 
 ## Guias
 
