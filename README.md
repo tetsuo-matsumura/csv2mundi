@@ -6,7 +6,7 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
  - Plataforma
    - Node
      - PapaParse [(Github)](https://github.com/mholt/PapaParse)
-     - formidable [(Github)](https://github.com/felixge/node-formidable)
+     - ng-file-upload [(Github)](https://github.com/danialfarid/ng-file-upload/)
      - mongoose
  - DB
    - MongoDB
