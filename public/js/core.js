@@ -1,1 +1,1 @@
-angular.module('csv2Mundi', ['fileController', 'httpService']);
+angular.module('csv2Mundi', ['fileController', 'httpService', 'fileUpload']);

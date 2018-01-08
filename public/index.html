@@ -22,8 +22,11 @@
 	<!-- Engine -->
 
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script src="js/angular/ng-file-upload-shim.min.js"></script> <!-- No html5 browsers support -->
+	<script src="js/angular/ng-file-upload.min.js"></script>
 
 	<script src="js/controllers/main.js"></script> 
+	<script src="js/controllers/upload.js"></script> 
 	<script src="js/services/files.js"></script> 
 	<script src="js/core.js"></script>
 
@@ -77,19 +80,28 @@
 				</p>
 
 		<div class="page-header text-center">
-				<h1>Upload you .csv file <i class="fa fa-upload" aria-hidden="true"></i></h1>
+				<h1>Upload your .csv file <i class="fa fa-upload" aria-hidden="true"></i></h1>
 		</div>
 		<!-- Upload form -->
-			<div id="upload-form" class="row" name="Upload">
+			<div id="upload-form" class="row" name="Upload" ng-app="fileUpload" ng-controller="uploadController">>
 				<div class="col-sm-8 col-sm-offset-2 text-center">
-					<form enctype="multipart/form-data">
 						<div class="form-group text-center">
-							<input type="file" class="form-control input-lg text-center" ng-model="fileData.name" accept=".csv">
-							<p class="help-block">Select or drag and drop a .csv file here.</p>
+							   <div ngf-drop ngf-select ng-model="files" class="well" 
+        						ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
+        						accept="text/csv" ngf-pattern="'text/csv'">
+        								<p class="help-block">Click here or drag and drop a .csv file to upload..</p>
+        						</div>
+        						<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+								<div class="page-header text-center">
+									    Files:
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+    </ul>
+									<h4>Upload log</h4>
+									<pre>{{log}}</pre>
+								</div>
+								
 						</div>
-						
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="uploadCSV()">Submit</button>
-					</form>
 			</div>
 		</div>
 	</div>
