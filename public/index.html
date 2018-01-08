@@ -14,6 +14,7 @@
 
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 	<!-- Stylesheet -->
 	<link rel='stylesheet' href='/stylesheets/normalize.css' />
@@ -90,16 +91,15 @@
         						ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
         						accept="text/csv" ngf-pattern="'.csv'">
         								<p class="help-block">Click here or drag and drop a .csv file to upload..</p>
-        												<p class="text-center" ng-show="loading">
-					<span class="fa fa-cog fa-spin fa-3x"></span>
-				</p>
         						</div>
         						<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+        							<p class="text-center" ng-show="loading">
+										<span class="fa fa-cog fa-spin fa-3x"></span>
+										<div ng-show="loading" class="progress">
+											<div ng-show="loading" class="progress-bar" role="progressbar" aria-valuenow="{{uploadPercentage}}" aria-valuemin="0" aria-valuemax="100" style="width:{{uploadPercentage}}%">{{uploadPercentage}}%</div>
+										</div>
+									</p>
 								<div class="page-header text-center">
-									    Files:
-    <ul>
-        <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-    </ul>
 									<h4>Upload log</h4>
 									<pre>{{log}}</pre>
 								</div>

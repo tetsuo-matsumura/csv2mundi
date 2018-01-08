@@ -13,7 +13,7 @@ angular.module('fileUpload', ['ngFileUpload'])
                   var file = files[i];
                   if (!file.$error) {
                     $scope.loading = true;
-                    $scope.log = file.name + '\n' + $scope.log;
+                    $scope.log = 'Received ' + file.name + '\n' + $scope.log;
                     Upload.upload({
                         url: '/api/upload',
                         method: 'POST',
@@ -21,20 +21,22 @@ angular.module('fileUpload', ['ngFileUpload'])
                     }).then(function (resp) {
                         $timeout(function() {
                             $scope.log = 'file: ' +
-                            resp.config.data.file.name +
-                            ', Response: ' + JSON.stringify(resp.data) +
+                            file.name +
+                            ' was saved to: ' + JSON.stringify(resp.config.url) +
                             '\n' + $scope.log;
+                            $scope.loading = false;
                         });
                     }, null, function (evt) {
                         var progressPercentage = parseInt(100.0 *
                         		evt.loaded / evt.total);
-                        $scope.log = 'progress: ' + progressPercentage + 
-                        	'% ' + file.name + '\n' + 
-                          $scope.log;
-                          $scope.loading = false;
+                        $scope.uploadPercentage = progressPercentage;
                     });
                   }
                 }
             }
         };
-    }]);
+    }]).filter("trust", ['$sce', function($sce) {
+  return function(htmlCode){
+    return $sce.trustAsHtml(htmlCode);
+  }
+}]);
