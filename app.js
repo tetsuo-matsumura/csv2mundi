@@ -1,6 +1,7 @@
 // set up ===================
 var express = require('express');
 var app = express();
+var router = express.Router();
 var mongoose = require('mongoose');
 var port = process.env.PORT || 8080;
 var path = require('path');
@@ -27,8 +28,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('X-HTTP-Method-Override')); 
 
+//controllers
+FileUploadController = require('./app/controllers/uploadController.js');
+
 //app routes
 require('./app/routes.js')(app);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

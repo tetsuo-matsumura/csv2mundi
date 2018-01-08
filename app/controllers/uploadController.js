@@ -1,6 +1,8 @@
 FileUploadController = function() {};
+const fs = require('fs');
 
 FileUploadController.prototype.uploadFile = function(req, res) {
+  console.log("i was here");
   /**
    * The following takes the blob uploaded to an arbitrary location with
    * a random file name and copies it to the specified file.path with the file.name.
@@ -11,7 +13,8 @@ FileUploadController.prototype.uploadFile = function(req, res) {
   fs.readFile(req.files.file.path, function (err, data) {
     // set the correct path for the file not the temporary one from the API:
     file.path = "/files/" + file.name;
-
+    console.log('Im here');
+    res.send('Birds home page');
     // copy the data from the req.files.file.path and paste it to file.path
     fs.writeFile(file.path, data, function (err) {
       if (err) {

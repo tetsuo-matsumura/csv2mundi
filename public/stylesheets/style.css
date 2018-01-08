@@ -11,6 +11,9 @@ body {}
 
 /*Panel*/
 .panel {width:300px;}
+
+/*Pre*/
+.well {border: 2px dashed #DDD;}
 /*Forms*/
 input[type="submit"]
 {

@@ -22,8 +22,8 @@
 	<!-- Engine -->
 
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-	<script src="js/angular/ng-file-upload-shim.min.js"></script> <!-- No html5 browsers support -->
-	<script src="js/angular/ng-file-upload.min.js"></script>
+	<script src="js/angular/ng-file-upload-shim.js"></script> <!-- No html5 browsers support -->
+	<script src="js/angular/ng-file-upload-all.js"></script>
 
 	<script src="js/controllers/main.js"></script> 
 	<script src="js/controllers/upload.js"></script> 
@@ -83,13 +83,16 @@
 				<h1>Upload your .csv file <i class="fa fa-upload" aria-hidden="true"></i></h1>
 		</div>
 		<!-- Upload form -->
-			<div id="upload-form" class="row" name="Upload" ng-app="fileUpload" ng-controller="uploadController">>
+			<div id="upload-form" class="row" name="Upload" ng-controller="uploadController">
 				<div class="col-sm-8 col-sm-offset-2 text-center">
 						<div class="form-group text-center">
 							   <div ngf-drop ngf-select ng-model="files" class="well" 
-        						ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="true"
-        						accept="text/csv" ngf-pattern="'text/csv'">
+        						ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+        						accept="text/csv" ngf-pattern="'.csv'">
         								<p class="help-block">Click here or drag and drop a .csv file to upload..</p>
+        												<p class="text-center" ng-show="loading">
+					<span class="fa fa-cog fa-spin fa-3x"></span>
+				</p>
         						</div>
         						<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 								<div class="page-header text-center">
