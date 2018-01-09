@@ -25,6 +25,7 @@ angular.module('fileUpload', ['ngFileUpload'])
                             ' was saved to: ' + JSON.stringify(resp.config.url) +
                             '\n' + $scope.log;
                             $scope.loading = false;
+                            $scope.uploadPercentage = 0;
                         });
                     }, null, function (evt) {
                         var progressPercentage = parseInt(100.0 *

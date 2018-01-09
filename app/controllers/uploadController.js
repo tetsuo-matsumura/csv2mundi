@@ -1,28 +1,24 @@
 FileUploadController = function() {};
-const fs = require('fs');
+var fs = require('fs');
 
 FileUploadController.prototype.uploadFile = function(req, res) {
-  console.log("i was here");
-  /**
-   * The following takes the blob uploaded to an arbitrary location with
-   * a random file name and copies it to the specified file.path with the file.name.
-   * Note that the file.name should come from your upload request on the client side
-   * because when the file is selected it is paired with its name. The file.name is
-   * not random nor is the file.path.
-   */
+
   fs.readFile(req.files.file.path, function (err, data) {
-    // set the correct path for the file not the temporary one from the API:
-    file.path = "/files/" + file.name;
-    console.log('Im here');
-    res.send('Birds home page');
-    // copy the data from the req.files.file.path and paste it to file.path
-    fs.writeFile(file.path, data, function (err) {
+    req.files.file.path = "./public/files/" + req.files.file.name;
+    for (i=2; fs.existsSync(req.files.file.path)  != true; i++){
+      console.log('oi');
+        req.files.file.name = i.toString() + "_" + req.files.file.name;
+        req.files.file.path = "./public/files/" + req.files.file.name;
+    };
+
+    fs.writeFile(req.files.file.path, data, function (err) {
       if (err) {
         return console.warn(err);
       }
-      console.log("The file: " + file.name + " was saved to " + file.path);
+      console.log("The file: " + req.files.file.name + " was saved as " + req.files.file.path);
+      res.send();
     });
   });
-}
+};
 
 module.exports = new FileUploadController();
