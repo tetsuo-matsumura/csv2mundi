@@ -114,6 +114,8 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 
 * Essa parte mão na massa é bem chatinha. É basicamente codar codar codar. Dá vontade de pegar código pronto mas como não é a proposta estou tentando fazer tudo na mão. Por algum motivo o mongoose está jogando pra collection files e eu não faço idéia de onde isso foi definido. De qualquer maneira consegui botar as queries para funcionar. Amanhã vou investigar a fundo o mongoose.
 
+![working1](https://i.imgur.com/cSADdGE.gif)
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
