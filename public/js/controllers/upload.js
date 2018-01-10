@@ -1,16 +1,16 @@
 angular.module('fileUpload', ['ngFileUpload'])
 
     .controller('uploadController', ['$scope', 'Upload', '$timeout', '$http', function ($scope, Upload, $timeout, $http) {
-        $scope.$watch('files', function () {
-            $scope.upload($scope.files);
+        $scope.$watch('file', function () {
+            $scope.upload($scope.file);
         });
 
         $scope.log = '';
 
-        $scope.upload = function (files) {
-            if (files && files.length) {
-                for (var i = 0; i < files.length; i++) {
-                  var file = files[i];
+        $scope.upload = function (file) {
+            if (file && file.length) {
+                for (var i = 0; i < file.length; i++) {
+                  var file = file[i];
                   if (!file.$error) {
                     $scope.loading = true;
                     $scope.log = 'Received ' + file.name + '\n' + $scope.log;

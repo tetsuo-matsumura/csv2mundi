@@ -4,7 +4,9 @@ var fs = require('fs');
 FileUploadController.prototype.uploadFile = function(req, res) {
 
   fs.readFile(req.files.file.path, function (err, data) {
-    req.files.file.path = "./public/files/" + req.files.file.name;
+    var d = new Date();
+    req.files.file.path = "./public/files/" +
+    d.getFullYear() + '-' + d.getMonth()+1 + '-' + d.getDate() + '-' + d.getHours() + d.getMinutes() + '-' + req.files.file.name;
 
     fs.writeFile(req.files.file.path, data, function (err) {
       if (err) {
