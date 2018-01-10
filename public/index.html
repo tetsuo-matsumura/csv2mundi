@@ -61,7 +61,7 @@
 					</div>
 					<p ng-hide="isEmpty" class="alert alert-warning"><strong>No files found :(</strong><br />Please upload a .csv file to have it listed.</p>
 				</div>
-				<div ng-repeat="file in files | filter:{status: 0} | orderBy : 'status'">
+				<div ng-repeat="file in waiting">
 					<div class="col-md-4">
 						<div class="panel panel-info">
 							<div class="panel-heading">
@@ -69,8 +69,22 @@
 							</div>
 							<div class="panel-body">
 								<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
-								<p class="help-block">Filename: {{files[$index].name}}   </p>
-								<p class="help-block">Path: {{files[$index].path}}   </p>
+								<p class="help-block">Filename: {{waiting[$index].name}}   </p>
+								<p class="help-block">Path: {{waiting[$index].path}}   </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-repeat="file in ok">
+					<div class="col-md-4">
+						<div class="panel panel-success">
+							<div class="panel-heading">
+									<i class="fa fa-check-circle" aria-hidden="true"></i> Complete!
+							</div>
+							<div class="panel-body">
+								<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+								<p class="help-block">Filename: {{ok[$index].name}}   </p>
+								<p class="help-block">Path: {{ok[$index].path}}   </p>
 							</div>
 						</div>
 					</div>

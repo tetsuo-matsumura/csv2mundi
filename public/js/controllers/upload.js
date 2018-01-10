@@ -1,6 +1,6 @@
 angular.module('fileUpload', ['ngFileUpload'])
 
-    .controller('uploadController', ['$scope', 'Upload', '$timeout', '$http', function ($scope, Upload, $timeout, $http) {
+    .controller('uploadController', ['$scope', 'Upload', '$timeout', '$http', '$rootScope', function ($scope, Upload, $timeout, $http, $rootScope) {
         $scope.$watch('file', function () {
             $scope.upload($scope.file);
         });
@@ -26,7 +26,7 @@ angular.module('fileUpload', ['ngFileUpload'])
                             '\n' + $scope.log;
                             $scope.loading = false;
                             $scope.uploadPercentage = 0;
-                            $scope.log = $scope.log + JSON.stringify(resp.data);
+                            //$scope.log = $scope.log + JSON.stringify(resp.data); //DEBUG
                             var req = {
                                 method: 'POST',
                                 url: '/api/files',
@@ -38,6 +38,7 @@ angular.module('fileUpload', ['ngFileUpload'])
 
                             $http(req).then(function (res){
                                 $scope.log = "Data saved to database.\n" + $scope.log;
+                                $rootScope.$broadcast('NewUploadEntry');
                             }, function(err){
                                 $scope.log = "Failed to save data to database.\n" + $scope.log;
                             });

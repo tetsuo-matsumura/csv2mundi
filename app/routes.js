@@ -30,6 +30,7 @@ module.exports = function (app) {
                 res.send(err);
             }
         });
+        getFiles(res);
     });
 
     app.post('/api/upload', multipartyMiddleware, FileUploadController.uploadFile);
