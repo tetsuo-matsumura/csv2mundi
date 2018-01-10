@@ -20,12 +20,11 @@ module.exports = function (app) {
     });
 
     app.post('/api/files', function (req, res) {
-        console.log("oi");
         File.create({
             name: req.body.name,
             path: req.body.path,
             rowcount: req.body.rowcount,
-            status: "WAITING"
+            status: 0
         }, function(err, data){
             if(err){
                 res.send(err);

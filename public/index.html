@@ -55,22 +55,22 @@
 	<!-- Main container -->
 	<div class="container">
 		<div class="row">
-				<div ng-hide="isEmpty">
+				<div>
 					<div class="page-header text-center">
 								<h1>My files | <span class="label label-info">{{ files.length }} files</span></h1>
 					</div>
-					<p class="alert alert-warning"><strong>No files found :(</strong><br />Please upload a .csv file to have it listed.</p>
+					<p ng-hide="isEmpty" class="alert alert-warning"><strong>No files found :(</strong><br />Please upload a .csv file to have it listed.</p>
 				</div>
-				<div ng-repeat="file in files">
+				<div ng-repeat="file in files | filter:{status: 0} | orderBy : 'status'">
 					<div class="col-md-4">
-						<div class="panel panel-default">
+						<div class="panel panel-info">
 							<div class="panel-heading">
-									{status_message} 
+									<i class="fa fa-check-circle-o" aria-hidden="true"></i> Ready to parse!
 							</div>
 							<div class="panel-body">
-
 								<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
-								<p class="help-block">{filename} </p>
+								<p class="help-block">Filename: {{files[$index].name}}   </p>
+								<p class="help-block">Path: {{files[$index].path}}   </p>
 							</div>
 						</div>
 					</div>

@@ -7,9 +7,12 @@ angular.module('fileController', [])
 		Files.get()
 			.success(function(data) {
 				$scope.files = data;
+				console.log(data);
 				$scope.loading = false;
 				if ($scope.files.length == 0){
 					$scope.isEmpty = false;
+				}else{
+					$scope.isEmpty = true;
 				}
 			});
 }]);
