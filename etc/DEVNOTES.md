@@ -116,6 +116,8 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 
 ![working1](https://i.imgur.com/cSADdGE.gif)
 
+* Tirei o resto do dia para ensinar um amigo Node e Angular a partir deste app. Se eu conseguir fazer com que ele entenda e aprenda usando o meu código significa que eu estou dominando o assunto.
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
