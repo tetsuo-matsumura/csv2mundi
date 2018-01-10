@@ -30,7 +30,7 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
 
 Edite o arquivo `setup.js` com a URL do seu MongoDB.
 
-Execute o programa com
+## Inicialização
 
 `npm start` ou `node app.js`
 
