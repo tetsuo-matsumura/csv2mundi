@@ -24,4 +24,14 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
 
 ## Instalação
 
+ Clone ou baixe a versão master em uma pasta, acesse através do console e digite:
+ 
+`npm install`
+
+Edite o arquivo `setup.js` com a URL do seu MongoDB.
+
+Execute o programa com
+
+`npm start` ou `node app.js`
+
 ## Uso
