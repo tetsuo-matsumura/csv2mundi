@@ -61,6 +61,20 @@
 					</div>
 					<p ng-hide="isEmpty" class="alert alert-warning"><strong>No files found :(</strong><br />Please upload a .csv file to have it listed.</p>
 				</div>
+				<div ng-repeat="file in error">
+					<div class="col-md-4">
+						<div class="panel panel-danger">
+							<div class="panel-heading">
+									<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occured!
+							</div>
+							<div class="panel-body">
+								<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+								<p class="help-block">Filename: {{error[$index].name}}   </p>
+								<p class="help-block">Path: {{error[$index].path}}   </p>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div ng-repeat="file in waiting">
 					<div class="col-md-4">
 						<div class="panel panel-info">

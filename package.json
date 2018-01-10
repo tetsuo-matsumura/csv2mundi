@@ -31,7 +31,6 @@
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "^4.16.2",
-    "formidable": "^1.1.1",
     "method-override": "^2.3.10",
     "mongodb": "^3.0.1",
     "mongoose": "^5.0.0-rc1",

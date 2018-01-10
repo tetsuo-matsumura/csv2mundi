@@ -4,25 +4,21 @@ angular.module('fileController', [])
 		
 		$scope.loading = true;
 
-		function checkStatus(status) {
- 		  return status >= 18;
-		};
-
-
 		Files.get()
 			.success(function(data) {
 				$scope.files = data;
-				console.log(data);
-				$scope.waiting= [];
-				$scope.ok= [];
+				$scope.waiting = [];
+				$scope.ok = [];
+				$scope.error = [];
 				for (var i = 0, len = data.length; i < len; i++) {
 					if(data[i].status == 0){
 					$scope.waiting.push(data[i]);
-					console.log($scope.waiting);
 					}
 					if(data[i].status == 1){
 					$scope.ok.push(data[i]);
-					console.log($scope.ok);
+					}
+					if(data[i].status > 1 || typeof(data[i].status) != "number"){
+					$scope.error.push(data[i]);
 					}
 				}
 
@@ -37,17 +33,18 @@ angular.module('fileController', [])
 			Files.get()
 				.success(function(data) {
 					$scope.files = data;
-					console.log(data);
-					$scope.waiting= [];
-					$scope.ok= [];
+					$scope.waiting = [];
+					$scope.ok = [];
+					$scope.error = [];
 					for (var i = 0, len = data.length; i < len; i++) {
 						if(data[i].status == 0){
 						$scope.waiting.push(data[i]);
-						console.log($scope.waiting);
 						}
 						if(data[i].status == 1){
 						$scope.ok.push(data[i]);
-						console.log($scope.ok);
+						}
+						if(data[i].status > 1 || typeof(data[i].status) != "number"){
+					$scope.error.push(data[i]);
 						}
 					}
 
