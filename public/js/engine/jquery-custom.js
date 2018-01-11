@@ -18,3 +18,4 @@ $('.closeall').click(function(){
   $('.collapse.in')
     .collapse('hide');
 });
+

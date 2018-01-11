@@ -26,17 +26,36 @@ angular.module('fileUpload', ['ngFileUpload'])
                             '\n' + $scope.log;
                             $scope.loading = false;
                             $scope.uploadPercentage = 0;
+                            var fileID = new Date().getUTCMilliseconds();
+                            var date = new Date();
                             //$scope.log = $scope.log + JSON.stringify(resp.data); //DEBUG
-                            var req = {
+                            var reqReports = {
+                                method: 'POST',
+                                url: '/api/reports',
+                                data: {
+                                    "name": resp.data.originalFilename,
+                                    "path": resp.data.path,
+                                    "dateUpload": date,
+                                    "fileID": fileID
+                                }
+                            }
+                            var reqFiles = {
                                 method: 'POST',
                                 url: '/api/files',
                                 data: {
                                     "name": resp.data.originalFilename,
-                                    "path": resp.data.path
+                                    "path": resp.data.path,
+                                    "dateUpload": date,
+                                    "fileID": fileID
                                 }
                             }
+                           $http(reqReports).then(function (res){
+                                $scope.log = "Report created.\n" + $scope.log;
+                            }, function(err){
+                                $scope.log = "Failed to save data to database.\n" + $scope.log;
+                            });
 
-                            $http(req).then(function (res){
+                            $http(reqFiles).then(function (res){
                                 $scope.log = "Data saved to database.\n" + $scope.log;
                                 $rootScope.$broadcast('RequestReload');
                             }, function(err){

@@ -1,4 +1,5 @@
 var File = require('./models/file.js');
+var Report = require('./models/report.js');
 var fs = require('fs');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
@@ -14,17 +15,47 @@ function getFiles(res) {
     });
 };
 
+function getReports(req, res) {
+    Report.find(req.params).exec(function (err, report) {
+
+        if (err) {
+            res.send(err);
+        }
+        res.json(report);
+    });
+};
+
 module.exports = function (app) {
 
     app.get('/api/files', function (req, res) {
         getFiles(res);
     });
 
+    app.get('/api/reports/:fileID', function (req, res) {
+        getReports(req, res);
+    });
+
+    app.post('/api/reports', function (req, res) {
+        Report.create({
+            name: req.body.name,
+            path: req.body.path,
+            dateUpload: req.body.dateUpload,
+            fileID: req.body.fileID,
+            status: 0,
+            parseStatus: 0,
+            processStatus: 0
+        }, function(err, data){
+            if(err){
+                res.send(err);
+            }
+        });
+    });
+
     app.post('/api/files', function (req, res) {
         File.create({
             name: req.body.name,
             path: req.body.path,
-            rowcount: req.body.rowcount,
+            fileID: req.body.fileID,
             status: 0
         }, function(err, data){
             if(err){
@@ -38,6 +69,7 @@ module.exports = function (app) {
 
     app.delete('/api/files/:file_id', function (req, res) {
         File.find({_id: req.params.file_id}).exec(function (err, file) {
+            console.log(req.params);
             if (err) {
                 res.send(err);
             }

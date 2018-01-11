@@ -1,8 +1,6 @@
-angular.module('httpService', [])
+var app = angular.module('httpService', []);
 
-	// super simple service
-	// each function returns a promise object 
-	.factory('Files', ['$http',function($http) {
+	app.factory('Files', ['$http',function($http) {
 		return {
 			get : function() {
 				return $http.get('/api/files');
@@ -12,7 +10,14 @@ angular.module('httpService', [])
 			},
 			delete : function(id) {
 				return $http.delete('/api/files/' + id);
-				console.log(id);
+			}
+		}
+	}]);
+
+	app.factory('Reports', ['$http',function($http) {
+		return {
+			get : function(fileID) {
+				return $http.get('/api/reports/' + fileID);
 			}
 		}
 	}]);

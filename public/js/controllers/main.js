@@ -1,6 +1,6 @@
 angular.module('fileController', [])
 
-	.controller('mainController', ['$scope','$http', '$rootScope','Files', function($scope, $http, $rootScope, Files) {
+	.controller('mainController', ['$scope','$http', '$rootScope','Files', 'Reports', function($scope, $http, $rootScope, Files, Reports) {
 		
 		$scope.loading = true;
 
@@ -10,6 +10,7 @@ angular.module('fileController', [])
 				$scope.waiting = [];
 				$scope.ok = [];
 				$scope.error = [];
+
 				for (var i = 0, len = data.length; i < len; i++) {
 					if(data[i].status == 0){
 					$scope.waiting.push(data[i]);
@@ -68,4 +69,13 @@ angular.module('fileController', [])
 					$rootScope.$broadcast('RequestReload');
 				});
 		};
+		$scope.openReport = function(fileID) {
+			$scope.loading = true;
+			Reports.get(fileID)
+				.success(function(data) {
+					$scope.loading = false;
+					$scope.report = data;
+				});
+
+		}
 }]);
