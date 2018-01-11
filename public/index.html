@@ -113,7 +113,7 @@
 						    	</td>
 						    	<td>
 						    		<dt>Parse date</dt>
-						    		<dd>11-JAN-2018 19:55</dd>
+						    		<dd>{{report.0.dateParse | date:"MM/dd/yyyy h:mma"}}</dd>
 						    	</td>
 						    </tr>
 						    </tbody>
@@ -154,14 +154,19 @@
 								<br /><br />
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="#">Check file integrity</a></li>
-									<li><a href="#">Delete</a></li>
+									<li><a href="#" data-toggle="collapse" data-target="#delete{{report.0.fileID}}">Delete</a></li>
 								</ul>
 							</div> 
+							<div id="delete{{report.0.fileID}}" class="collapse">
+								<p class="alert alert-danger deletebox">Deleting {{report.0.path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
+								<button type="button" class="btn btn-default btn-s" data-toggle="collapse" data-target="#delete{{report.0.fileID}}">Back</button>
+								<button type="button" class="btn btn-danger btn-s" ng-click="deleteFile(report.0.fileID)" data-toggle="collapse" data-target="#filereport,#main,#delete{{report.0.fileID}}">Delete</button>
+								</p>
+							</div>
 				</div>
 				<div class="col-sm-4 text-center">
-					<div class="well">
-
-					</div> 
+					<div id="parseBar"></div>
+					<div id="processBar"></div>
 				</div>
 			</div>
 		</div>
