@@ -118,6 +118,11 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 
 * Tirei o resto do dia para ensinar um amigo Node e Angular a partir deste app. Se eu conseguir fazer com que ele entenda e aprenda usando o meu código significa que eu estou dominando o assunto.
 
+# 11/01
+
+* [[heavy breathing]]
+![heavy](https://i.imgur.com/PrtABxe.gif)
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
