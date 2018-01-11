@@ -8,8 +8,8 @@ var app = angular.module('httpService', []);
 			create : function(fileData) {
 				return $http.post('/api/upload', fileData);
 			},
-			delete : function(id) {
-				return $http.delete('/api/files/' + id);
+			delete : function(fileID) {
+				return $http.delete('/api/files/' + fileID);
 			}
 		}
 	}]);

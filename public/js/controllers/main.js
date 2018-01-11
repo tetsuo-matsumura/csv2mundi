@@ -59,10 +59,10 @@ angular.module('fileController', [])
 				});
 		});
 
-		$scope.deleteFile = function(id) {
+		$scope.deleteFile = function(fileID) {
 			$scope.loading = true;
 
-			Files.delete(id)
+			Files.delete(fileID)
 				.success(function(data) {
 					$scope.loading = false;
 					$scope.files = data;

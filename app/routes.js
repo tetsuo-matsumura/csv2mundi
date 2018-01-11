@@ -67,9 +67,8 @@ module.exports = function (app) {
 
     app.post('/api/upload', multipartyMiddleware, FileUploadController.uploadFile);
 
-    app.delete('/api/files/:file_id', function (req, res) {
-        File.find({_id: req.params.file_id}).exec(function (err, file) {
-            console.log(req.params);
+    app.delete('/api/files/:fileID', function (req, res) {
+        File.find({fileID: req.params.fileID}).exec(function (err, file) {
             if (err) {
                 res.send(err);
             }
@@ -79,12 +78,19 @@ module.exports = function (app) {
                 }
                 console.log("File " + file[0].path + " was deleted!");
                 File.remove({
-                    _id: req.params.file_id
+                    fileID: req.params.fileID
                 }, function (err, file) {
                     if (err){
                         res.send(err);
                     }
-                    getFiles(res);
+                    Report.remove({
+                        fileID: req.params.fileID
+                    }, function (err, file) {
+                      if (err){
+                          res.send(err);
+                        }
+                        getFiles(res);
+                    });
                 });
             });
         });
