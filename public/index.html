@@ -165,13 +165,13 @@
 				</div>
 			</div>
 		</div>
-			<div class="closereport" data-toggle="collapse" data-target="#filereport">
-				<i class="fa fa-chevron-up" aria-hidden="true"></i>
-			</div>
+		<div class="closereport" data-toggle="collapse" data-target="#filereport,#main">
+			<i class="fa fa-chevron-up" aria-hidden="true"></i><br />Close report
+		</div>
 
 	</div>
 	<!-- Main container -->
-	<div class="container">
+	<div id="main" class="container collapse in">
 	<!-- File list -->
 		<div class="row">
 				<div>
@@ -194,7 +194,7 @@
 									<div class="col-sm8 fileinfo">
 										<p class="help-block"><strong>Filename:</strong> {{error[$index].name}}</p>
 										<p class="help-block"><strong>Path:</strong> {{error[$index].path}}</p>
-										<button type="button" class="btn btn-info btn-xs" data-toggle="collapse" data-target="#filereport">Open</button> 
+										<button type="button" class="btn btn-info btn-xs" data-toggle="collapse" data-target="#filereport,#main">Open</button> 
 										<button type="button" class="btn btn-danger btn-xs" data-toggle="collapse" data-target="#delete{{$index}}">Delete</button>
 										<div id="delete{{$index}}" class="collapse">
 											<p class="alert alert-danger deletebox">Deleting {{error[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
@@ -222,7 +222,7 @@
 									<div class="col-sm8 fileinfo">
 										<p class="help-block"><strong>Filename:</strong> {{waiting[$index].name}}</p>
 										<p class="help-block"><strong>Path:</strong> {{waiting[$index].path}}</p>
-										<button type="button" class="btn btn-info btn-xs" data-toggle="collapse" data-target="#filereport" ng-click="openReport(waiting[$index].fileID)">Open</button> 
+										<button type="button" class="btn btn-info btn-xs" data-toggle="collapse" data-target="#filereport,#main" ng-click="openReport(waiting[$index].fileID)">Open</button> 
 										<button type="button" class="btn btn-danger btn-xs" data-toggle="collapse" data-target="#waiting{{$index}}">Delete</button>
 										<div id="waiting{{$index}}" class="collapse">
 											<p class="alert alert-danger deletebox">Deleting {{waiting[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
