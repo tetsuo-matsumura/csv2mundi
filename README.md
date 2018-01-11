@@ -33,5 +33,3 @@ Edite o arquivo `setup.js` com a URL do seu MongoDB.
 ## Utilização
 
 `npm start` ou `node app.js`
-
-## Uso
