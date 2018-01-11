@@ -3,7 +3,16 @@
 /*Global*/
 html {font-family: 'Montserrat', sans-serif; overflow-y:scroll;}
 body {}
-
+p.help-block {
+    line-height: 50%;
+}
+.fileinfo {
+    margin-left: 15px;
+}
+.deletebox{
+    margin-top: 10px;
+    margin-right: 15px;
+}
 /*Header*/
 #logo {width: inherit;}
 #logo h1{font-size: 35px;}
@@ -11,6 +20,9 @@ body {}
 
 /*Panel*/
 .panel {width:300px;}
+
+/*Container*/
+.container {margin-top:35px;}
 
 /*Well*/
 .well {border: 2px dashed #DDD;}

@@ -10,22 +10,25 @@
 	<title>csv2mundi</title>
 	<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
 
-	<!-- 3rd Party Code -->
-
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 	<!-- Stylesheet -->
 	<link rel='stylesheet' href='/stylesheets/normalize.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
 
-	<!-- Engine -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 
+	<!-- 3rd Party Code -->
+
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-	<script src="js/angular/ng-file-upload-shim.js"></script> <!-- No html5 browsers support -->
-	<script src="js/angular/ng-file-upload-all.js"></script>
+	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+	<script src="js/engine/ng-file-upload-shim.js"></script> <!-- No html5 browsers support -->
+	<script src="js/engine/ng-file-upload-all.js"></script>
+	<script src="js/engine/jquery-custom.js"></script>
 
+	<!-- App Engine -->
 	<script src="js/controllers/main.js"></script> 
 	<script src="js/controllers/upload.js"></script> 
 	<script src="js/services/files.js"></script> 
@@ -35,21 +38,29 @@
 <!-- bootstrap the controller -->
 <body ng-controller="mainController">
 	<!-- Navigation bar -->
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">csv2mundi</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+         		</button>
+         		<a class="navbar-brand" href="#">csv2mundi</a>
 			</div>
-			<ul class="nav navbar-nav">
-				<li ng-class="{active: isActive('/files')}"><a href="#">My files</a></li>
-		    	<li ng-class="{active: isActive('/upload')}"><a href="#Upload">Upload</a></li>
-		    </ul>
-		    <ul class="nav navbar-nav navbar-right">
-      			<li>
-      				<a href="https://github.com/gabrieltet/csv2mundi">
-      				<i class="fa fa-github" aria-hidden="true"></i> GitHub</a>
-      			</li>
-    		</ul>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li ng-class="{active: isActive('/#')}"><a href="#" class="smooth-scroll">My files</a></li>
+			    	<li ng-class="{active: isActive('/#Upload')}"><a href="#Upload" class="smooth-scroll">Upload</a></li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right">
+	      			<li>
+	      				<a href="https://github.com/gabrieltet/csv2mundi">
+	      				<i class="fa fa-github" aria-hidden="true"></i> GitHub</a>
+	      			</li>
+	    		</ul>
+    		</div>
  		 </div>
 	</nav>
 	<!-- Main container -->
@@ -68,9 +79,23 @@
 									<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occured!
 							</div>
 							<div class="panel-body">
-								<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
-								<p class="help-block">Filename: {{error[$index].name}}   </p>
-								<p class="help-block">Path: {{error[$index].path}}   </p>
+								<div class="row">
+									<div class="col-sm-4 text-center">
+										<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+									</div>
+									<div class="col-sm8 fileinfo">
+										<p class="help-block"><strong>Filename:</strong> {{error[$index].name}}</p>
+										<p class="help-block"><strong>Path:</strong> {{error[$index].path}}</p>
+										<button type="button" class="btn btn-info btn-xs">Open</button> 
+										<button type="button" class="btn btn-danger btn-xs" data-toggle="collapse" data-target="#delete{{$index}}">Delete</button>
+										<div id="delete{{$index}}" class="collapse">
+											<p class="alert alert-danger deletebox">Deleting {{error[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
+											<button type="button" class="btn btn-default btn-s" data-toggle="collapse" data-target="#delete{{$index}}">Back</button>
+											<button type="button" class="btn btn-danger btn-s" data-toggle="collapse" data-target="#delete{{$index}}">Delete</button>
+											</p>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -82,9 +107,23 @@
 									<i class="fa fa-check-circle-o" aria-hidden="true"></i> Ready to parse!
 							</div>
 							<div class="panel-body">
-								<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
-								<p class="help-block">Filename: {{waiting[$index].name}}   </p>
-								<p class="help-block">Path: {{waiting[$index].path}}   </p>
+								<div class="row">
+									<div class="col-sm-4 text-center">
+										<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+									</div>
+									<div class="col-sm8 fileinfo">
+										<p class="help-block"><strong>Filename:</strong> {{waiting[$index].name}}</p>
+										<p class="help-block"><strong>Path:</strong> {{waiting[$index].path}}</p>
+										<button type="button" class="btn btn-info btn-xs">Open</button> 
+										<button type="button" class="btn btn-danger btn-xs" data-toggle="collapse" data-target="#waiting{{$index}}">Delete</button>
+										<div id="waiting{{$index}}" class="collapse">
+											<p class="alert alert-danger deletebox">Deleting {{waiting[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
+											<button type="button" class="btn btn-default btn-s" data-toggle="collapse" data-target="#waiting{{$index}}">Back</button>
+											<button type="button" class="btn btn-danger btn-s" data-toggle="collapse" data-target="#waiting{{$index}}">Delete</button>
+											</p>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -93,12 +132,26 @@
 					<div class="col-md-4">
 						<div class="panel panel-success">
 							<div class="panel-heading">
-									<i class="fa fa-check-circle" aria-hidden="true"></i> Complete!
+									<i class="fa fa-check-circle" aria-hidden="true"></i> Completed!
 							</div>
 							<div class="panel-body">
-								<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
-								<p class="help-block">Filename: {{ok[$index].name}}   </p>
-								<p class="help-block">Path: {{ok[$index].path}}   </p>
+								<div class="row">
+									<div class="col-sm-4 text-center">
+										<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+									</div>
+									<div class="col-sm8 fileinfo">
+										<p class="help-block"><strong>Filename:</strong> {{ok[$index].name}}</p>
+										<p class="help-block"><strong>Path:</strong> {{ok[$index].path}}</p>
+										<button type="button" class="btn btn-info btn-xs">Open</button> 
+										<button type="button" class="btn btn-danger btn-xs" data-toggle="collapse" data-target="#ok{{$index}}">Delete</button>
+										<div id="ok{{$index}}" class="collapse">
+											<p class="alert alert-danger deletebox">Deleting {{ok[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
+											<button type="button" class="btn btn-default btn-s" data-toggle="collapse" data-target="#ok{{$index}}">Back</button>
+											<button type="button" class="btn btn-danger btn-s" data-toggle="collapse" data-target="#ok{{$index}}">Delete</button>
+											</p>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -112,7 +165,7 @@
 				<h1>Upload your .csv file <i class="fa fa-upload" aria-hidden="true"></i></h1>
 		</div>
 		<!-- Upload form -->
-			<div id="upload-form" class="row" name="Upload" ng-controller="uploadController">
+			<div id="Upload" class="row" name="Upload" ng-controller="uploadController">
 				<div class="col-sm-8 col-sm-offset-2 text-center">
 						<div class="form-group text-center">
 							   <div ngf-drop ngf-select ng-model="file" class="well" 
