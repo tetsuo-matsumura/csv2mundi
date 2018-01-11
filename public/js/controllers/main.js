@@ -29,6 +29,7 @@ angular.module('fileController', [])
 					$scope.isEmpty = true;
 				}
 			});
+
 		$rootScope.$on('NewUploadEntry', function(){
 			Files.get()
 				.success(function(data) {
@@ -56,4 +57,5 @@ angular.module('fileController', [])
 					}
 				});
 		});
+		
 }]);

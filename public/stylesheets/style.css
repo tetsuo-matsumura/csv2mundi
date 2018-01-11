@@ -27,6 +27,30 @@ p.help-block {
 /*Well*/
 .well {border: 2px dashed #DDD;}
 
+/*File report*/
+.filereport{
+ background-color: #f2f2f2;
+ padding-top:50px;
+ padding-left:50px;
+ padding-right:50px;
+ height: 500px;
+}
+.closereport{
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    background-color: #e6e6e6;
+    -webkit-transition: background-color 1s;
+}
+.closereport:hover{
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    background-color: #d9d9d9;
+}
+.report-table{
+
+}
 /*Forms*/
 input[type="submit"]
 {
