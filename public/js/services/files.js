@@ -12,6 +12,7 @@ angular.module('httpService', [])
 			},
 			delete : function(id) {
 				return $http.delete('/api/files/' + id);
+				console.log(id);
 			}
 		}
 	}]);

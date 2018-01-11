@@ -38,7 +38,7 @@ angular.module('fileUpload', ['ngFileUpload'])
 
                             $http(req).then(function (res){
                                 $scope.log = "Data saved to database.\n" + $scope.log;
-                                $rootScope.$broadcast('NewUploadEntry');
+                                $rootScope.$broadcast('RequestReload');
                             }, function(err){
                                 $scope.log = "Failed to save data to database.\n" + $scope.log;
                             });

@@ -130,7 +130,7 @@
 										<div id="delete{{$index}}" class="collapse">
 											<p class="alert alert-danger deletebox">Deleting {{error[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
 											<button type="button" class="btn btn-default btn-s" data-toggle="collapse" data-target="#delete{{$index}}">Back</button>
-											<button type="button" class="btn btn-danger btn-s" data-toggle="collapse" data-target="#delete{{$index}}">Delete</button>
+											<button type="button" class="btn btn-danger btn-s" ng-click="deleteFile(error[$index]._id)">Delete</button>
 											</p>
 										</div>
 									</div>
@@ -158,7 +158,7 @@
 										<div id="waiting{{$index}}" class="collapse">
 											<p class="alert alert-danger deletebox">Deleting {{waiting[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
 											<button type="button" class="btn btn-default btn-s" data-toggle="collapse" data-target="#waiting{{$index}}">Back</button>
-											<button type="button" class="btn btn-danger btn-s" data-toggle="collapse" data-target="#waiting{{$index}}">Delete</button>
+											<button type="button" class="btn btn-danger btn-s" ng-click="deleteFile(waiting[$index]._id)">Delete</button>
 											</p>
 										</div>
 									</div>
@@ -186,7 +186,7 @@
 										<div id="ok{{$index}}" class="collapse">
 											<p class="alert alert-danger deletebox">Deleting {{ok[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
 											<button type="button" class="btn btn-default btn-s" data-toggle="collapse" data-target="#ok{{$index}}">Back</button>
-											<button type="button" class="btn btn-danger btn-s" data-toggle="collapse" data-target="#ok{{$index}}">Delete</button>
+											<button type="button" class="btn btn-danger btn-s" ng-click="deleteFile(ok[$index]._id)">Delete</button>
 											</p>
 										</div>
 									</div>

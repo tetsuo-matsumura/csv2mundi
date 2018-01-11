@@ -30,7 +30,7 @@ angular.module('fileController', [])
 				}
 			});
 
-		$rootScope.$on('NewUploadEntry', function(){
+		$rootScope.$on('RequestReload', function(){
 			Files.get()
 				.success(function(data) {
 					$scope.files = data;
@@ -57,5 +57,15 @@ angular.module('fileController', [])
 					}
 				});
 		});
-		
+
+		$scope.deleteFile = function(id) {
+			$scope.loading = true;
+
+			Files.delete(id)
+				.success(function(data) {
+					$scope.loading = false;
+					$scope.files = data;
+					$rootScope.$broadcast('RequestReload');
+				});
+		};
 }]);
