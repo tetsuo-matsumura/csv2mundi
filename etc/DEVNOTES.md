@@ -127,6 +127,11 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 
 * Estou trabalhando no parser de csv. Talvez seja a parte mais importante de todas pois tenho que fazer varias funções sem afetar o desempenho. Atualmente o parser sem função alguma está levando vários minutos para ler 1 bilhão de linhas. Não sei se isso é esperado ou ruim. Se na vida real a Mundipagg receber 1 bilhão de transações de um cliente só seria magnífico para todos hehe.
 
+* O sistema de processamento já está conseguindo coletar dados do MongoDB. Vou estudar mais a API da Mundi para tratar os erros antes de enviar. Por exemplo não aceitarem a bandeira Hiper ou cartões AMEX precisarem de 4 códigos de CVV.
+
+![process](https://i.imgur.com/fQZUksn.png)
+Imagem: 100 processos enviados de uma vez direto do MongoDB
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
