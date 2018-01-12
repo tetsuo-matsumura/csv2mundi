@@ -132,6 +132,10 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 ![process](https://i.imgur.com/fQZUksn.png)
 Imagem: 100 processos enviados de uma vez direto do MongoDB
 
+* O flow do app está ficando bem complexo. Estruturei um diagrama de fluxo para ilustrar o modo de operação atual.
+
+![diagram](https://i.imgur.com/vb8xKI5.png)
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
