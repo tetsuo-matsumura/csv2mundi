@@ -123,6 +123,10 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 * [[heavy breathing]]
 ![heavy](https://i.imgur.com/PrtABxe.gif)
 
+# 12/01
+
+* Estou trabalhando no parser de csv. Talvez seja a parte mais importante de todas pois tenho que fazer varias funções sem afetar o desempenho. Atualmente o parser sem função alguma está levando vários minutos para ler 1 bilhão de linhas. Não sei se isso é esperado ou ruim.
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
