@@ -125,7 +125,7 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 
 # 12/01
 
-* Estou trabalhando no parser de csv. Talvez seja a parte mais importante de todas pois tenho que fazer varias funções sem afetar o desempenho. Atualmente o parser sem função alguma está levando vários minutos para ler 1 bilhão de linhas. Não sei se isso é esperado ou ruim.
+* Estou trabalhando no parser de csv. Talvez seja a parte mais importante de todas pois tenho que fazer varias funções sem afetar o desempenho. Atualmente o parser sem função alguma está levando vários minutos para ler 1 bilhão de linhas. Não sei se isso é esperado ou ruim. Se na vida real a Mundipagg receber 1 bilhão de transações de um cliente só seria magnífico para todos hehe.
 
 ## Guias
 
