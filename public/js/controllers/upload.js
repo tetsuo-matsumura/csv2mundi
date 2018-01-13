@@ -6,6 +6,8 @@ angular.module('fileUpload', ['ngFileUpload'])
         });
 
         $scope.log = '';
+                            
+                           
 
         $scope.upload = function (file) {
             if (file && file.length) {
@@ -26,7 +28,7 @@ angular.module('fileUpload', ['ngFileUpload'])
                             '\n' + $scope.log;
                             $scope.loading = false;
                             $scope.uploadPercentage = 0;
-                            var fileID = new Date().getUTCMilliseconds();
+                            var fileID = '_' + Math.random().toString(36).substr(2, 9);
                             var date = new Date();
                             //$scope.log = $scope.log + JSON.stringify(resp.data); //DEBUG
                             var reqReports = {

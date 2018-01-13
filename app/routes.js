@@ -61,7 +61,9 @@ module.exports = function (app) {
             if(err){
                 res.send(err);
             }
+            console.log(req.body.fileID);
         });
+
         getFiles(res);
     });
 

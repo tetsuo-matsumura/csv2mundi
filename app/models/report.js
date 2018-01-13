@@ -12,5 +12,5 @@ module.exports = mongoose.model('Report', {
 	status: Number,
 	parseStatus: Number,
 	processStatus: Number,
-	fileID: Number
+	fileID: String
 });

@@ -5,5 +5,5 @@ module.exports = mongoose.model('File', {
 	path: String,
 	rowCount: String,
 	status: Number,
-	fileID: Number
+	fileID: String
 });
