@@ -136,6 +136,11 @@ Imagem: 100 processos enviados de uma vez direto do MongoDB
 
 ![diagram](https://i.imgur.com/vb8xKI5.png)
 
+# 14/01
+
+* Detectei um bug que pode dar problemas no código mais tarde. Ao dar timeout na promesa de Upload gera-se um novo POST, duplicando a entrada de dados na coleção `fileReport`. Imagino que seja o fato de ter feito o código sem pensar em como as callbacks seriam trabalhadas. Irei dar procedimento da correção pelo issue track do Git: https://github.com/gabrieltet/csv2mundi/issues/1
+ 
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
