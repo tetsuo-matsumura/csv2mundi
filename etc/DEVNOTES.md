@@ -142,7 +142,7 @@ Imagem: 100 processos enviados de uma vez direto do MongoDB
  
 # 15/01
 
-* Estou tendo um pouco de dificuldades para parsear arquivos gigantes. Como eu escrevo código debugando com prints no console, acabei de aprender que o console é sync e buffered o que causou memory leak. Estou estudando mais sobre o assunto para conseguir trabalhar com files de mais de 1GB.
+* Estou tendo um pouco de dificuldades para parsear arquivos gigantes. Como eu escrevo código debugando com prints no console, acabei de aprender que o console é async e buffered o que causou memory leak quando eu lotei o buffer. Estou estudando mais sobre o assunto para conseguir trabalhar com files de mais de 1GB.
 
 ## Guias
 
