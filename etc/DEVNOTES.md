@@ -140,6 +140,9 @@ Imagem: 100 processos enviados de uma vez direto do MongoDB
 
 * Detectei um bug que pode dar problemas no código mais tarde. Ao dar timeout na promesa de Upload gera-se um novo POST, duplicando a entrada de dados na coleção `fileReport`. Imagino que seja o fato de ter feito o código sem pensar em como as callbacks seriam trabalhadas. Irei dar procedimento da correção pelo issue track do Git: https://github.com/gabrieltet/csv2mundi/issues/1
  
+# 15/01
+
+* Estou tendo um pouco de dificuldades para parsear arquivos gigantes. Como eu escrevo código debugando com prints no console, acabei de aprender que o console é sync e buffered o que causou memory leak. Estou estudando mais sobre o assunto para conseguir trabalhar com files de mais de 1GB.
 
 ## Guias
 
