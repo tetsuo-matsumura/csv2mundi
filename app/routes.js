@@ -1,9 +1,13 @@
 var File = require('./models/file.js');
 var Report = require('./models/report.js');
+var Transaction = require('./models/transaction.js')
 var fs = require('fs');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 var FileUploadController = require('./controllers/uploadController');
+var parseFile = require('./parser.js');
+
+// CONTROLLERS
 
 function getFiles(res) {
     File.find({}).exec(function (err, file) {
@@ -25,7 +29,11 @@ function getReports(req, res) {
     });
 };
 
+//ROUTES
+
 module.exports = function (app) {
+
+//GET ROUTES
 
     app.get('/api/files', function (req, res) {
         getFiles(res);
@@ -67,9 +75,39 @@ module.exports = function (app) {
         getFiles(res);
     });
 
+     app.post('/api/transactions', function (req, res) {
+        Transaction.create(
+        {
+            Priority: req.body.Priority,
+            AmountInCents: req.body.AmountInCents,
+            CreditCard: {
+                CreditCardBrand: req.body.CreditCard.CreditCardBrand,
+                CreditCardNumber: req.body.CreditCard.CreditCardNumber,
+                ExpMonth: req.body.CreditCard.ExpMonth,
+                ExpYear: req.body.CreditCard.ExpYear,
+                HolderName: req.body.CreditCard.HolderName,
+                SecurityCode: req.body.CreditCard.SecurityCode
+                },
+                processStatus: req.body.processStatus,
+                fileID: 'something'
+        }
+            , function(err, data){
+            if(err){
+                res.send(err);
+            }
+            console.log(req.body.fileID);
+        });
+
+        getFiles(res);
+    });
+
     app.post('/api/upload', multipartyMiddleware, FileUploadController.uploadFile);
+ //   app.get('/api/parse/:fileID', multipartyMiddleware, parseFile.newFile);
+
+// DELETE ROUTES
 
     app.delete('/api/files/:fileID', function (req, res) {
+        //SELF CONTAINED CONTROLLER - CONSIDER CREATING UNIQUE CONTROLLER ON FUTURE COMMITS
         File.find({fileID: req.params.fileID}).exec(function (err, file) {
             if (err) {
                 res.send(err);
@@ -98,7 +136,11 @@ module.exports = function (app) {
         });
     });
 
+// INDEX GET ROUTE
+
     app.get('*', function (req, res) {
         res.sendFile(__dirname + '/public/index.html'); 
     });
+
+
 };

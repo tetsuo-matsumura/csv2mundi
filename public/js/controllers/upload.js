@@ -51,18 +51,22 @@ angular.module('fileUpload', ['ngFileUpload'])
                                     "fileID": fileID
                                 }
                             }
-                           $http(reqReports).then(function (res){
-                                $scope.log = "Report created.\n" + $scope.log;
-                            }, function(err){
-                                $scope.log = "Failed to save data to database.\n" + $scope.log;
+
+                            $http(reqReports).then(function (res){
+
+                                    $scope.log = "Report created.\n" + $scope.log;
+
                             });
 
                             $http(reqFiles).then(function (res){
-                                $scope.log = "Data saved to database.\n" + $scope.log;
-                                $rootScope.$broadcast('RequestReload');
-                            }, function(err){
-                                $scope.log = "Failed to save data to database.\n" + $scope.log;
+
+                                    $scope.log = "Data saved to database.\n" + $scope.log;
+
+                                    $rootScope.$broadcast('RequestReload');
+
                             });
+
+
                         });
 
                     }, null, function (evt) {

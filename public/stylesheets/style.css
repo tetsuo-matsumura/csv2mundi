@@ -23,6 +23,9 @@ p.help-block {
    padding: 0 !important;
    margin: 0 !important;
 }
+.buttons {
+    position:relative;
+}
 /*Header*/
 .navbar-brand{padding-left:30px;}
 .nav{padding-left:30px;padding-right:30px;margin:0px;}
@@ -52,6 +55,7 @@ p.help-block {
  padding-right:50px;
  width:100%;
  height:90vh;
+ position:absolute;
 }
 .closereport{
     position:fixed;
