@@ -76,8 +76,8 @@ module.exports = function (app) {
     });
 
      app.post('/api/transactions', function (req, res) {
-        Transaction.create(
-        {
+        Transaction.collection.insert(req.body
+      /*  {
             Priority: req.body.Priority,
             AmountInCents: req.body.AmountInCents,
             CreditCard: {
@@ -90,12 +90,13 @@ module.exports = function (app) {
                 },
                 processStatus: req.body.processStatus,
                 fileID: 'something'
-        }
+        }*/
             , function(err, data){
             if(err){
                 res.send(err);
             }
-            console.log(req.body.fileID);
+            //console.log(req.body);
+            //console.log(res);
         });
 
         getFiles(res);
