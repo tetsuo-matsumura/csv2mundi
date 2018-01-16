@@ -144,6 +144,13 @@ Imagem: 100 processos enviados de uma vez direto do MongoDB
 
 * Estou tendo um pouco de dificuldades para parsear arquivos gigantes. Como eu escrevo código debugando com prints no console, acabei de aprender que o console é async e buffered o que causou memory leak quando eu lotei o buffer. Estou estudando mais sobre o assunto para conseguir trabalhar com files de mais de 1GB.
 
+# 16/01
+
+* Consegui solucionar o parser. Darei uma explicação simples do problema e sua solução. O MongoDB armazena seus documentos no fomarto JSON. Usei a ferramenta papaparse para converter o csv em JSON. O Papaparse fornece um callback para cada linha. A solução inicial era em cada linha gerar um INSERT no MongoDB porém, em arquivos com mais de 1 milhão e linhas essa solução causava memory leak. A solução atual é criar uma stream de leitura para o arquivo .csv e uma stream de escrita para um arquivos .JSON temporário. Dessa maneira a escrita do arquivo JSON a partir de arquivos com mais de 1 milhão de linhas é resolvida em menos de 1 minuto. Após completar, o callback invoca um child process com o mongoimport, ferramenta nativa do Mongo que permite importar arquivo JSON direto para o banco de dados. Importar arquivos com mais de 2GB usando essa ferramenta custam 2 minutos de processamento, tempo aceitável para a solução.
+
+![import](https://i.imgur.com/riinDzL.png)
+Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
