@@ -156,6 +156,9 @@ Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 * ballmer peak
 
 ![foidificilpracaceta](https://i.imgur.com/2QNm1yt.gif)
+
+* Estamos na reta final do entregável. :)
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
