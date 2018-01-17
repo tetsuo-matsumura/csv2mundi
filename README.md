@@ -6,7 +6,6 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
  - Plataforma
    - Node
      - PapaParse [(Github)](https://github.com/mholt/PapaParse)
-     - ng-file-upload [(Github)](https://github.com/danialfarid/ng-file-upload/)
      - mongoose
      - spawngo [(Github)](https://github.com/otterthecat/spawngo)
  - DB
@@ -15,6 +14,7 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
    - Express
  - Frontend
    - Angular 4
+   - ng-file-upload [(Github)](https://github.com/danialfarid/ng-file-upload/)
    - Bootstrap + Font Awesome
    
 
@@ -22,7 +22,7 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
 
  - npm
  - mongodb 3.0.1 +
- - Windows (Não foi testada tem Linux)
+ - Windows (Compatibilidade com Linux ainda não foi testada).
 
 ## Instalação
 
