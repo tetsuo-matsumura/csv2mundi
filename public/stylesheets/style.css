@@ -51,7 +51,7 @@ p.help-block {
 /*File report*/
 .filereport{
  position: relative;
- overflow-x: scroll;
+ overflow-x: hidden;
  background-color: #f2f2f2;
  padding-top:50px;
  padding-left:50px;
@@ -101,4 +101,9 @@ p.help-block {
 
 .transactionreport {
     padding-top:25px;
+}
+
+/* Responsive Break Row */
+@media screen and (min-width: 768px){
+    .rwd-break { display: none; }
 }

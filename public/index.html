@@ -149,6 +149,7 @@
 							<button type="button" class="btn btn-basic" ng-if="parseStatus[2]"><i class="fa fa-check-square-o" aria-hidden="true"></i> Parsed</button>
 							<button type="button" class="btn btn-primary" ng-if="!processStatus[2]"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Send to MundiPagg</button>
 							<button type="button" class="btn btn-basic" ng-if="processStatus[2]"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Data sent</button>
+							<br class="rwd-break" /><br class="rwd-break" />
 							<div class="btn-group">
 								<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
 									<i class="fa fa-cog" aria-hidden="true"></i>
@@ -232,9 +233,9 @@
 					</div>
 					<div class="text-center">
 						<ul class="pager">
-  							<li><a href="#{{page+1}}" ng-click="getTransaction(report.0.fileID, page-1)">Previous</a></li>
+  							<li ng-if="!firstpage"><a href="#{{page-1}}" ng-click="getTransaction(report.0.fileID, page-1)">Previous</a></li>
   							<li><span class="badge">{{page}}</span></li>
-  							<li><a href="#{{page+1}}" ng-click="getTransaction(report.0.fileID, page+1)">Next</a></li>
+  							<li ng-if="!lastpage"><a href="#{{page+1}}" ng-click="getTransaction(report.0.fileID, page+1)">Next</a></li>
 						</ul>
 					</div>
 				</div>

@@ -12,5 +12,6 @@ module.exports = mongoose.model('CreditCardTransactionCollection', {
 			SecurityCode: Number
 			},
 		processStatus: Number,
+		processOrder: Number,
 		fileID: String 
 	},"CreditCardTransactionCollection");

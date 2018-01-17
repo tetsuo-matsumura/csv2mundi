@@ -92,6 +92,8 @@ angular.module('fileController', [])
 				if (data[0].processStatus !== 0 && data[0].processStatus !== 1){
 					$scope.processStatus = ['label-warning','Error', false];					
 				};
+				$scope.lastpage = false;
+				$rootScope.$broadcast('getTransaction', {fileID: data[0].fileID,page: 1});
 			});
 		});
 
@@ -109,19 +111,29 @@ angular.module('fileController', [])
 		$rootScope.$on('getTransaction', function(event, opt){
 			if(opt.page == 1){
 				var skip = 0;
+				$scope.firstpage = true;
 			}else{
 				var skip = opt.page*10;
+				$scope.firstpage = false;
 			};
+
 			Transaction.get(opt.fileID,skip)
 				.success(function(data){
+
 					$scope.loading = false;
-					$scope.transaction = data;
-					$scope.page = opt.page;
+					if(data.length == 0){
+						$scope.lastpage = true;
+						$rootScope.$broadcast('getTransaction', {fileID: opt.fileID,page: opt.page-1});
+					} else {
+						$scope.transaction = data;
+						$scope.page = opt.page;
+					};
 			});
 		});
 
 		$scope.getTransaction = function(fileID, page) {
 			if(page != 0){
+				$scope.lastpage = false;
 				$rootScope.$broadcast('getTransaction', {fileID: fileID,page: page});
 			};
 		};
@@ -158,7 +170,8 @@ angular.module('fileController', [])
 					if (data[0].processStatus !== 0 && data[0].processStatus !== 1){
 						$scope.processStatus = ['label-warning','Error', false];					
 					};
-					$rootScope.$broadcast('getTransaction', {fileID: fileID,page: 1});
+					$scope.lastpage = false;
+					$rootScope.$broadcast('getTransaction', {fileID: data[0].fileID,page: 1});
 				});
 		};
 
