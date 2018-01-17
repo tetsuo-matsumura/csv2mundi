@@ -8,6 +8,7 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
      - PapaParse [(Github)](https://github.com/mholt/PapaParse)
      - ng-file-upload [(Github)](https://github.com/danialfarid/ng-file-upload/)
      - mongoose
+     - spawngo [(Github)](https://github.com/otterthecat/spawngo)
  - DB
    - MongoDB
  - Framework
@@ -29,7 +30,7 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
  
 `npm install`
 
-Edite o arquivo `setup.js` com a URL do seu MongoDB.
+Edite o arquivo `setup.js` com a URL do seu MongoDB. O MongoDB deve estar ouvindo a porta `27017` (default).
 
 ## Utilização
 
