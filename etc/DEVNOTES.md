@@ -151,6 +151,11 @@ Imagem: 100 processos enviados de uma vez direto do MongoDB
 ![import](https://i.imgur.com/riinDzL.png)
 Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 
+# 17/01
+
+* ballmer peak
+
+![foidificilpracaceta](https://i.imgur.com/2QNm1yt.gif)
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
