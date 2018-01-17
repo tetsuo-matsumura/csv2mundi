@@ -15,9 +15,11 @@ var oldPercent = 0;
 var rowCount = 0;
 var rowErrorCount = 0;
 var i = 2;
+var date = new Date();
 
 ParseCSVController.prototype.parseFile = function(req, res) {
 	console.log(req.params);
+  console.log(fs.existsSync(tempFile));
   while(fs.existsSync(tempFile)){
     if(i<4){
         tempFile = tempFile.slice(0, -5-((i-2)*3)) + '('+ i.toString() + ')' + ".json";
@@ -82,6 +84,7 @@ ParseCSVController.prototype.parseFile = function(req, res) {
             if(results.data[0].length != 8){
             	var resultObject = {};
             	rowErrorCount++;
+              rowCount = rowCount-1;
             };
             writeStream.write(JSON.stringify(resultObject)+',');
             rowCount++;
@@ -98,9 +101,19 @@ ParseCSVController.prototype.parseFile = function(req, res) {
             });
             childProcess.on('close', function (data) {
             	fs.unlinkSync(tempFile);
-				console.log(`child process exited with code ${data}`);
-				res.send('Rowcount: '+rowCount+'\n'+'Error count:'+rowErrorCount);
-				childProcess.stdin.destroy();
+      				console.log(`child process exited with code ${data}`);
+      				//res.send('Rowcount: '+rowCount+'\n'+'Error count:'+rowErrorCount);
+              console.log(req.params);
+              Report.findOneAndUpdate(req.params,
+                { 
+                    rowCount: rowCount,
+                    rowErrorCount: rowErrorCount,
+                    parseStatus: 1,
+                    dateParse: date
+                }).exec(function (err, report) {
+                    console.log("Report updated!");
+                }); 
+      				res.sendStatus(200);
             });
           },
           error: function(error, file) {

@@ -77,10 +77,7 @@ module.exports = function (app) {
     });
 
     app.post('/api/upload', multipartyMiddleware, FileUploadController.uploadFile);
-    app.get('/api/parse/:fileID', function(req,res){
-
-        ParseCSVController.parseFile(req,res);
-    });
+    app.get('/api/parse/:fileID', ParseCSVController.parseFile);
 
 // DELETE ROUTES
 

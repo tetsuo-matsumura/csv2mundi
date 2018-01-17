@@ -21,3 +21,11 @@ var app = angular.module('httpService', []);
 			}
 		}
 	}]);
+
+	app.factory('Parse', ['$http',function($http) {
+		return {
+			get : function(fileID) {
+				return $http.get('/api/parse/' + fileID);
+			}
+		}
+	}]);
