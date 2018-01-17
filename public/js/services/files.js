@@ -29,3 +29,11 @@ var app = angular.module('httpService', []);
 			}
 		}
 	}]);
+
+	app.factory('Transaction', ['$http',function($http) {
+		return {
+			get : function(fileID, page) {
+				return $http.get('/api/transactions/' + fileID + '/' + page);
+			}
+		}
+	}]);

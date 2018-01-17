@@ -30,6 +30,16 @@ function getReports(req, res) {
     });
 };
 
+function getTransactions(req, res) {
+
+    Transaction.find({fileID: req.params.fileID}).sort("Priority").skip(parseInt(req.params.page)).limit(10).exec(function (err, transaction) {
+        if (err) {
+            res.send(err);
+        }
+        res.json(transaction);
+    });
+};
+
 //ROUTES
 
 module.exports = function (app) {
@@ -42,6 +52,10 @@ module.exports = function (app) {
 
     app.get('/api/reports/:fileID', function (req, res) {
         getReports(req, res);
+    });
+
+    app.get('/api/transactions/:fileID/:page', function (req, res) {
+        getTransactions(req, res);
     });
 
     app.post('/api/reports', function (req, res) {

@@ -26,6 +26,9 @@ p.help-block {
 .buttons {
     position:relative;
 }
+.badge {
+    color:#777;
+}
 /*Header*/
 .navbar-brand{padding-left:30px;}
 .nav{padding-left:30px;padding-right:30px;margin:0px;}

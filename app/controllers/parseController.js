@@ -78,7 +78,7 @@ ParseCSVController.prototype.parseFile = function(req, res) {
                 "HolderName": results.data[0][6],
                 "SecurityCode": parseInt(results.data[0][7])
                 },
-                processStatus: 1,
+                processStatus: 0,
                 fileID: report[0].fileID
             };
             if(results.data[0].length != 8){

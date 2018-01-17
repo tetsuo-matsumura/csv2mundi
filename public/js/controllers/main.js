@@ -1,9 +1,10 @@
 angular.module('fileController', [])
 
-	.controller('mainController', ['$scope','$http', '$rootScope','Files', 'Reports', 'Parse', function($scope, $http, $rootScope, Files, Reports, Parse) {
+	.controller('mainController', ['$scope','$http', '$rootScope','Files', 'Reports', 'Parse', 'Transaction', function($scope, $http, $rootScope, Files, Reports, Parse, Transaction) {
 		
 		$scope.loading = true;
 		$scope.parsing = false;
+		$scope.page = 1;
 
 		Files.get()
 			.success(function(data) {
@@ -104,11 +105,34 @@ angular.module('fileController', [])
 					$rootScope.$broadcast('RequestReload');
 				});
 		};
+
+		$rootScope.$on('getTransaction', function(event, opt){
+			if(opt.page == 1){
+				var skip = 0;
+			}else{
+				var skip = opt.page*10;
+			};
+			Transaction.get(opt.fileID,skip)
+				.success(function(data){
+					$scope.loading = false;
+					$scope.transaction = data;
+					$scope.page = opt.page;
+			});
+		});
+
+		$scope.getTransaction = function(fileID, page) {
+			if(page != 0){
+				$rootScope.$broadcast('getTransaction', {fileID: fileID,page: page});
+			};
+		};
+
 		$scope.openReport = function(fileID) {
 			$scope.loading = true;
 			Reports.get(fileID)
 				.success(function(data) {
+					if (data[0].parseStatus > 0){
 					$scope.loading = false;
+					}
 					$scope.report = data;
 					///////////////////
 					// PARSE STATUS 
@@ -134,8 +158,8 @@ angular.module('fileController', [])
 					if (data[0].processStatus !== 0 && data[0].processStatus !== 1){
 						$scope.processStatus = ['label-warning','Error', false];					
 					};
+					$rootScope.$broadcast('getTransaction', {fileID: fileID,page: 1});
 				});
-
 		};
 
 		$scope.parseFile = function(fileID) {
@@ -144,7 +168,6 @@ angular.module('fileController', [])
 			Parse.get(fileID)
 				.success(function(data) {
 					$scope.loading = false;
-					console.log(data);
 					$rootScope.$broadcast('RequestReloadReport', {fileID: fileID});
 				});
 
