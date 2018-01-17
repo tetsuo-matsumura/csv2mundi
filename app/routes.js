@@ -5,7 +5,8 @@ var fs = require('fs');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 var FileUploadController = require('./controllers/uploadController');
-var parseFile = require('./parser.js');
+var ParseCSVController = require('./controllers/parseController');
+var temp = 'temp.json';
 
 // CONTROLLERS
 
@@ -75,35 +76,11 @@ module.exports = function (app) {
         getFiles(res);
     });
 
-     app.post('/api/transactions', function (req, res) {
-        Transaction.collection.insert(req.body
-      /*  {
-            Priority: req.body.Priority,
-            AmountInCents: req.body.AmountInCents,
-            CreditCard: {
-                CreditCardBrand: req.body.CreditCard.CreditCardBrand,
-                CreditCardNumber: req.body.CreditCard.CreditCardNumber,
-                ExpMonth: req.body.CreditCard.ExpMonth,
-                ExpYear: req.body.CreditCard.ExpYear,
-                HolderName: req.body.CreditCard.HolderName,
-                SecurityCode: req.body.CreditCard.SecurityCode
-                },
-                processStatus: req.body.processStatus,
-                fileID: 'something'
-        }*/
-            , function(err, data){
-            if(err){
-                res.send(err);
-            }
-            //console.log(req.body);
-            //console.log(res);
-        });
-
-        getFiles(res);
-    });
-
     app.post('/api/upload', multipartyMiddleware, FileUploadController.uploadFile);
- //   app.get('/api/parse/:fileID', multipartyMiddleware, parseFile.newFile);
+    app.get('/api/parse/:fileID', function(req,res){
+
+        ParseCSVController.parseFile(req,res);
+    });
 
 // DELETE ROUTES
 
