@@ -21,6 +21,7 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
 
  - npm
  - mongodb 3.0.1 +
+ - Windows (Não foi testada tem Linux)
 
 ## Instalação
 
