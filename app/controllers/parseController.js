@@ -18,8 +18,6 @@ var i = 2;
 var date = new Date();
 
 ParseCSVController.prototype.parseFile = function(req, res) {
-	console.log(req.params);
-  console.log(fs.existsSync(tempFile));
   while(fs.existsSync(tempFile)){
     if(i<4){
         tempFile = tempFile.slice(0, -5-((i-2)*3)) + '('+ i.toString() + ')' + ".json";
@@ -64,7 +62,7 @@ ParseCSVController.prototype.parseFile = function(req, res) {
             } else {
               percent = parseInt(parser.streamer._input.bytesRead*100/fileStats.size) + '%';
               oldPercent = percent;
-              console.log(parseFloat(parser.streamer._input.bytesRead/1000000).toFixed(1)+'MB' + '/' + parseFloat(fileStats.size/1000000).toFixed(1)+'MB'+' ('+percent+')');
+              console.log(parseFloat(parser.streamer._input.bytesRead/1000000).toFixed(1)+'MB' + '/' + parseFloat(fileStats.size/1000000).toFixed(1)+'MB'+' ('+percent+') @'+report[0].path);
             }
             var resultObject = 
             {
@@ -100,20 +98,26 @@ ParseCSVController.prototype.parseFile = function(req, res) {
               console.log(data.toString('utf8'));
             });
             childProcess.on('close', function (data) {
-            	fs.unlinkSync(tempFile);
-      				console.log(`child process exited with code ${data}`);
-      				//res.send('Rowcount: '+rowCount+'\n'+'Error count:'+rowErrorCount);
-              console.log(req.params);
+
+              
+      				console.log(`Child process exited with code ${data}`);
+
               Report.findOneAndUpdate(req.params,
                 { 
+
                     rowCount: rowCount,
                     rowErrorCount: rowErrorCount,
                     parseStatus: 1,
                     dateParse: date
+
                 }).exec(function (err, report) {
+
                     console.log("Report updated!");
-                }); 
-      				res.sendStatus(200);
+                    fs.unlinkSync(tempFile);
+                });
+
+              res.sendStatus(200); 
+
             });
           },
           error: function(error, file) {

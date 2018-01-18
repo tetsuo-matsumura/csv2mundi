@@ -4,7 +4,6 @@ angular.module('fileController', [])
 		
 		$scope.loading = true;
 		$scope.parsing = false;
-		$scope.page = 1;
 
 		Files.get()
 			.success(function(data) {
@@ -24,7 +23,7 @@ angular.module('fileController', [])
 					$scope.error.push(data[i]);
 					}
 				}
-
+				console.log(data);
 				$scope.loading = false;
 				if ($scope.files.length == 0){
 					$scope.isEmpty = false;
@@ -48,7 +47,7 @@ angular.module('fileController', [])
 						$scope.ok.push(data[i]);
 						}
 						if(data[i].status > 1 || typeof(data[i].status) != "number"){
-					$scope.error.push(data[i]);
+						$scope.error.push(data[i]);
 						}
 					}
 
@@ -109,32 +108,18 @@ angular.module('fileController', [])
 		};
 
 		$rootScope.$on('getTransaction', function(event, opt){
-			if(opt.page == 1){
-				var skip = 0;
-				$scope.firstpage = true;
-			}else{
-				var skip = opt.page*10;
-				$scope.firstpage = false;
-			};
-
-			Transaction.get(opt.fileID,skip)
+			Transaction.get(opt.fileID,0)
 				.success(function(data){
 
 					$scope.loading = false;
-					if(data.length == 0){
-						$scope.lastpage = true;
-						$rootScope.$broadcast('getTransaction', {fileID: opt.fileID,page: opt.page-1});
-					} else {
-						$scope.transaction = data;
-						$scope.page = opt.page;
-					};
+					$scope.transaction = data;
+					$scope.page = opt.page;
 			});
 		});
 
 		$scope.getTransaction = function(fileID, page) {
 			if(page != 0){
-				$scope.lastpage = false;
-				$rootScope.$broadcast('getTransaction', {fileID: fileID,page: page});
+				$rootScope.$broadcast('getTransaction', {fileID: fileID,page: 0});
 			};
 		};
 
@@ -171,7 +156,7 @@ angular.module('fileController', [])
 						$scope.processStatus = ['label-warning','Error', false];					
 					};
 					$scope.lastpage = false;
-					$rootScope.$broadcast('getTransaction', {fileID: data[0].fileID,page: 1});
+					$rootScope.$broadcast('getTransaction', {fileID: data[0].fileID,page: 0});
 				});
 		};
 

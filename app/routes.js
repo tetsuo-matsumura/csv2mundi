@@ -1,4 +1,3 @@
-var File = require('./models/file.js');
 var Report = require('./models/report.js');
 var Transaction = require('./models/transaction.js')
 var fs = require('fs');
@@ -11,7 +10,7 @@ var temp = 'temp.json';
 // CONTROLLERS
 
 function getFiles(res) {
-    File.find({}).exec(function (err, file) {
+    Report.find({}).exec(function (err, file) {
 
         if (err) {
             res.send(err);
@@ -71,24 +70,10 @@ module.exports = function (app) {
             if(err){
                 res.send(err);
             }
+            getFiles(res);
         });
     });
 
-    app.post('/api/files', function (req, res) {
-        File.create({
-            name: req.body.name,
-            path: req.body.path,
-            fileID: req.body.fileID,
-            status: 0
-        }, function(err, data){
-            if(err){
-                res.send(err);
-            }
-            console.log(req.body.fileID);
-        });
-
-        getFiles(res);
-    });
 
     app.post('/api/upload', multipartyMiddleware, FileUploadController.uploadFile);
     app.get('/api/parse/:fileID', ParseCSVController.parseFile);
@@ -97,7 +82,7 @@ module.exports = function (app) {
 
     app.delete('/api/files/:fileID', function (req, res) {
         //SELF CONTAINED CONTROLLER - CONSIDER CREATING UNIQUE CONTROLLER ON FUTURE COMMITS
-        File.find({fileID: req.params.fileID}).exec(function (err, file) {
+        Report.find({fileID: req.params.fileID}).exec(function (err, file) {
             if (err) {
                 res.send(err);
             }

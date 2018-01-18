@@ -40,33 +40,14 @@ angular.module('fileUpload', ['ngFileUpload'])
                                     "dateUpload": date,
                                     "fileID": fileID
                                 }
-                            }
-                            var reqFiles = {
-                                method: 'POST',
-                                url: '/api/files',
-                                data: {
-                                    "name": resp.data.originalFilename,
-                                    "path": resp.data.path,
-                                    "dateUpload": date,
-                                    "fileID": fileID
-                                }
-                            }
+                            };
 
                             $http(reqReports).then(function (res){
 
                                     $scope.log = "Report created.\n" + $scope.log;
-
-                            });
-
-                            $http(reqFiles).then(function (res){
-
-                                    $scope.log = "Data saved to database.\n" + $scope.log;
-
                                     $rootScope.$broadcast('RequestReload');
 
                             });
-
-
                         });
 
                     }, null, function (evt) {
