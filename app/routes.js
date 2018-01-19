@@ -91,20 +91,15 @@ module.exports = function (app) {
                 res.send(err);
                 }
                 console.log("File " + file[0].path + " was deleted!");
-                File.remove({
+                Report.remove({
                     fileID: req.params.fileID
                 }, function (err, file) {
                     if (err){
                         res.send(err);
                     }
-                    Report.remove({
-                        fileID: req.params.fileID
-                    }, function (err, file) {
-                      if (err){
-                          res.send(err);
-                        }
-                        getFiles(res);
-                    });
+                    
+                    getFiles(res);
+                    
                 });
             });
         });
