@@ -159,6 +159,10 @@ Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 
 * Estamos na reta final do entregável. :)
 
+# 19/01
+
+* Consertei todos os bugs e dei uma arrumada no código. Falta apenas o envio do dado para a API da Mundi e refazer o sistema de paginação do log de transações. Sinto que devo finalizar até semana que vem.
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
