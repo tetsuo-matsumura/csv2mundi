@@ -108,6 +108,7 @@ angular.module('fileController', [])
 		};
 
 		$rootScope.$on('getTransaction', function(event, opt){
+			$scope.loading = true;
 			Transaction.get(opt.fileID,0)
 				.success(function(data){
 
