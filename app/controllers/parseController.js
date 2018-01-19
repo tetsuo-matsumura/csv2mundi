@@ -94,13 +94,11 @@ ParseCSVController.prototype.parseFile = function(req, res) {
           let childProcess = spawngo.import(tempFile);
             childProcess.stdout.on('data', function (data) {
               //EMPTY
-              console.log(data);
             });
             childProcess.stderr.on('data', function (data) {
               console.log(data.toString('utf8'));
             });
             childProcess.on('close', function (data) {
-              console.log(childProcess.killed);
               
       				console.log(`Child process exited with code ${data}`);
 
@@ -115,6 +113,9 @@ ParseCSVController.prototype.parseFile = function(req, res) {
                 }).exec(function (err, report) {
 
                     console.log("Report updated!");
+                    percent = 0;
+                    rowCount = 0;
+                    rowErrorCount = 0;
                     fs.unlink(tempFile, function(error){
                       if(err){
                         console.log(error);
