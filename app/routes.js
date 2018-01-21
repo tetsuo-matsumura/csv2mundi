@@ -5,7 +5,6 @@ var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 var FileUploadController = require('./controllers/uploadController');
 var ParseCSVController = require('./controllers/parseController');
-var temp = 'temp.json';
 
 // CONTROLLERS
 
@@ -34,10 +33,11 @@ function getTransactions(req, res) {
     Transaction.find({fileID: req.params.fileID}).sort("Priority").skip(parseInt(req.params.page)).limit(10).exec(function (err, transaction) {
         if (err) {
             res.send(err);
-        }
+        };
         res.json(transaction);
     });
 };
+
 
 //ROUTES
 
@@ -57,6 +57,10 @@ module.exports = function (app) {
         getTransactions(req, res);
     });
 
+    app.get('/api/parse/:fileID', ParseCSVController.parseFile);
+
+// POST ROUTES
+
     app.post('/api/reports', function (req, res) {
         Report.create({
             name: req.body.name,
@@ -74,9 +78,8 @@ module.exports = function (app) {
         });
     });
 
-
     app.post('/api/upload', multipartyMiddleware, FileUploadController.uploadFile);
-    app.get('/api/parse/:fileID', ParseCSVController.parseFile);
+
 
 // DELETE ROUTES
 
@@ -97,9 +100,14 @@ module.exports = function (app) {
                     if (err){
                         res.send(err);
                     }
-                    
-                    getFiles(res);
-                    
+                    Transaction.remove({
+                        fileID: req.params.fileID
+                    }, function(err, file){
+                        if (err){
+                            res.send(err);
+                        }
+                        getFiles(res);
+                    });
                 });
             });
         });

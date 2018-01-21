@@ -111,7 +111,7 @@ angular.module('fileController', [])
 			$scope.loading = true;
 			Transaction.get(opt.fileID,0)
 				.success(function(data){
-
+					console.log(data);
 					$scope.loading = false;
 					$scope.transaction = data;
 					$scope.page = opt.page;

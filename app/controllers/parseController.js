@@ -29,7 +29,6 @@ ParseCSVController.prototype.parseFile = function(req, res) {
   var writeStream = fs.createWriteStream(tempFile);
 
   Report.find(req.params).exec(function (err, report) {
-  		console.log(report[0].fileID);
         if (err) {
             res.send(err);
         }
