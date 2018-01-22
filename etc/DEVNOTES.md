@@ -168,6 +168,8 @@ Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 
 ![requester](https://i.imgur.com/Ls1ncGH.png)
 
+* Isso tudo está me lembrando bastante do trabalho em linha de produção nas fábricas do Japão. Esse problema é uma abstração de algo real e me senti feliz em ter percebido essa comparação.
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
