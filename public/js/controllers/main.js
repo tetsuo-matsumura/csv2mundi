@@ -32,6 +32,8 @@ angular.module('fileController', [])
 				}
 			});
 
+		
+
 		$rootScope.$on('RequestReload', function(){
 			Files.get()
 				.success(function(data) {
@@ -82,11 +84,14 @@ angular.module('fileController', [])
 				///////////////////
 				// PROCESS STATUS 
 				///////////////////
+				if(data[0].processStatus == -1){
+					$scope.processStatus = ['label-primary','Sending', false];
+				};
 				if(data[0].processStatus == 0){
 					$scope.processStatus = ['label-info','Waiting', false];
 				};
 				if (data[0].processStatus == 1){
-					$scope.parseStatus = ['label-success','OK', true];
+					$scope.processStatus = ['label-success','OK', true];
 				};
 				if (data[0].processStatus !== 0 && data[0].processStatus !== 1){
 					$scope.processStatus = ['label-warning','Error', false];					
@@ -151,7 +156,7 @@ angular.module('fileController', [])
 						$scope.processStatus = ['label-info','Waiting', false];
 					};
 					if (data[0].processStatus == 1){
-						$scope.parseStatus = ['label-success','OK', true];
+						$scope.processStatus = ['label-success','OK', true];
 					};
 					if (data[0].processStatus !== 0 && data[0].processStatus !== 1){
 						$scope.processStatus = ['label-warning','Error', false];					

@@ -5,6 +5,7 @@ var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 var FileUploadController = require('./controllers/uploadController');
 var ParseCSVController = require('./controllers/parseController');
+var RequestProcess = require('./controllers/requestController');
 
 // CONTROLLERS
 
@@ -58,6 +59,8 @@ module.exports = function (app) {
     });
 
     app.get('/api/parse/:fileID', ParseCSVController.parseFile);
+
+    app.get('/api/process/:fileID', RequestProcess.process);
 
 // POST ROUTES
 

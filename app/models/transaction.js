@@ -1,17 +1,19 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('CreditCardTransactionCollection', {
-		Priority: Number,
-		AmountInCents: Number,
-		CreditCard: {
-			CreditCardBrand: String,
-			CreditCardNumber: String,
-			ExpMonth: Number,
-			ExpYear: Number,
-			HolderName: String,
-			SecurityCode: Number
-			},
-		processStatus: Number,
-		processOrder: Number,
-		fileID: String 
-	},"CreditCardTransactionCollection");
+        Priority: Number,
+        AmountInCents: Number,
+        CreditCard: {
+            CreditCardBrand: String,
+            CreditCardNumber: String,
+            ExpMonth: Number,
+            ExpYear: Number,
+            HolderName: String,
+            SecurityCode: Number
+            },
+        processStatus: Number,
+        processDate: Date,
+        responseOrder: Number,
+        processMessage: String,
+        fileID: String 
+    },"CreditCardTransactionCollection");

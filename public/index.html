@@ -146,7 +146,7 @@
 					</div>
 						<div class="buttons">
 							<button type="button" class="btn btn-warning" ng-if="!parseStatus[2]" ng-click="parseFile(report.0.fileID)"><i class="fa fa-check-square-o" aria-hidden="true"></i> Parse</button>
-							<button type="button" class="btn btn-basic" ng-if="parseStatus[2]"><i class="fa fa-check-square-o" aria-hidden="true"></i> Parsed</button>
+							<button type="button" class="btn btn-basic" ng-if="parseStatus[2]"><i class="fa fa-check-square-o" aria-hidden="true"></i> Parsed</button> 
 							<button type="button" class="btn btn-primary" ng-if="!processStatus[2]"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Send to MundiPagg</button>
 							<button type="button" class="btn btn-basic" ng-if="processStatus[2]"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Data sent</button>
 							<br class="rwd-break" /><br class="rwd-break" />
@@ -176,6 +176,7 @@
 					<div id="processBar"></div>
 				</div>
 			</div>
+			<!--
 			<div class="row">
 				<div class="col-sm-12 transactionreport collapse in" id="transactionreport" ng-if="parseStatus[2] && !loading">
 					<div class="table-responsive">
@@ -235,6 +236,7 @@
 					</div>
 				</div>
 			</div>
+			-->
 		</div>
 		<div class="parsing" ng-if="parsing">
 			<i class="fa fa-clock-o" aria-hidden="true"></i><br />Parsing, please wait...
@@ -285,7 +287,7 @@
 					<div class="col-md-4">
 						<div class="panel panel-info col-centered">
 							<div class="panel-heading">
-									<i class="fa fa-check-circle-o" aria-hidden="true"></i> Ready to parse!
+									<i class="fa fa-check-circle-o" aria-hidden="true"></i> Waiting!
 							</div>
 							<div class="panel-body">
 								<div class="row">

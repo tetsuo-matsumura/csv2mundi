@@ -15,7 +15,7 @@ var oldPercent = 0;
 var rowCount = 0;
 var rowErrorCount = 0;
 var i = 2;
-var date = new Date();
+
 
 ParseCSVController.prototype.parseFile = function(req, res) {
   while(fs.existsSync(tempFile)){
@@ -100,7 +100,7 @@ ParseCSVController.prototype.parseFile = function(req, res) {
             childProcess.on('close', function (data) {
               
       				console.log(`Child process exited with code ${data}`);
-
+              var date = new Date();
               Report.findOneAndUpdate(req.params,
                 { 
 

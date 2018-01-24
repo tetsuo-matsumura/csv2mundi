@@ -7,10 +7,11 @@ module.exports = mongoose.model('Report', {
 	dateParse: Date,
 	dateProcess: Date,
 	rowCount: String,
+	processCount: Number,
 	rowErrorCount: String,
-	processErrorCount: String,
+	processErrorCount: Number,
 	status: Number,
 	parseStatus: Number,
 	processStatus: Number,
 	fileID: String
-});
+},"reports");
