@@ -1,6 +1,6 @@
 angular.module('fileController', [])
 
-	.controller('mainController', ['$scope','$http', '$rootScope','Files', 'Reports', 'Parse', 'Transaction', function($scope, $http, $rootScope, Files, Reports, Parse, Transaction) {
+	.controller('mainController', ['$scope','$http', '$rootScope','Files', 'Reports', 'Parse', 'Transaction', 'Process', function($scope, $http, $rootScope, Files, Reports, Parse, Transaction, Process) {
 		
 		$scope.loading = true;
 		$scope.parsing = false;
@@ -32,7 +32,17 @@ angular.module('fileController', [])
 				}
 			});
 
-		
+		$scope.processFile = function(fileID) {
+			$scope.loading = true;
+			$scope.processing = true;
+			Process.get(fileID)
+				.success(function(res) {
+					$scope.loading = false;
+					console.log(res);
+					$rootScope.$broadcast('RequestReloadReport', {fileID: fileID});
+				});
+
+		};
 
 		$rootScope.$on('RequestReload', function(){
 			Files.get()
@@ -85,16 +95,16 @@ angular.module('fileController', [])
 				// PROCESS STATUS 
 				///////////////////
 				if(data[0].processStatus == -1){
-					$scope.processStatus = ['label-primary','Sending', false];
+					$scope.processStatus = ['label-primary','Sending', false, true];
 				};
 				if(data[0].processStatus == 0){
-					$scope.processStatus = ['label-info','Waiting', false];
+					$scope.processStatus = ['label-info','Waiting', false, false];
 				};
 				if (data[0].processStatus == 1){
-					$scope.processStatus = ['label-success','OK', true];
+					$scope.processStatus = ['label-success','OK', true, false];
 				};
-				if (data[0].processStatus !== 0 && data[0].processStatus !== 1){
-					$scope.processStatus = ['label-warning','Error', false];					
+				if (data[0].processStatus !== 0 && data[0].processStatus !== 1 && data[0].processStatus !== -1){
+					$scope.processStatus = ['label-warning','Error', false, false];					
 				};
 				$scope.lastpage = false;
 				$rootScope.$broadcast('getTransaction', {fileID: data[0].fileID,page: 1});
@@ -152,14 +162,17 @@ angular.module('fileController', [])
 					///////////////////
 					// PROCESS STATUS 
 					///////////////////
+					if(data[0].processStatus == -1){
+						$scope.processStatus = ['label-primary','Sending', false, true];
+					};
 					if(data[0].processStatus == 0){
-						$scope.processStatus = ['label-info','Waiting', false];
+						$scope.processStatus = ['label-info','Waiting', false, false];
 					};
 					if (data[0].processStatus == 1){
-						$scope.processStatus = ['label-success','OK', true];
+						$scope.processStatus = ['label-success','OK', true, false];
 					};
-					if (data[0].processStatus !== 0 && data[0].processStatus !== 1){
-						$scope.processStatus = ['label-warning','Error', false];					
+					if (data[0].processStatus !== 0 && data[0].processStatus !== 1 && data[0].processStatus !== -1){
+						$scope.processStatus = ['label-warning','Error', false, false];					
 					};
 					$scope.lastpage = false;
 					$rootScope.$broadcast('getTransaction', {fileID: data[0].fileID,page: 0});

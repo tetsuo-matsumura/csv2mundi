@@ -45,8 +45,8 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
          		</button>
-         		<a class="navbar-brand" href="/" ng-if="!parsing">csv2mundi</a>
-         		<a class="navbar-brand" href="#" ng-if="parsing">csv2mundi</a>
+         		<a class="navbar-brand" href="/" ng-if="!parsing||!processing">csv2mundi</a>
+         		<a class="navbar-brand" href="#" ng-if="parsing||processing">csv2mundi</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -66,7 +66,7 @@
 	<div id="filereport" class="container-fluid collapse">
 		<div class="filereport">
 			<div class="page-header">
-				<h1>{{report.0.name}} report <br /><span class="label label-info">WAITING</span></h1>
+				<h1>{{report.0.name}} report <br /><span class="label {{processStatus[0]}}">{{processStatus[1]}}</span></h1>
 			</div>
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-cog fa-spin fa-3x"></span>
@@ -147,8 +147,9 @@
 						<div class="buttons">
 							<button type="button" class="btn btn-warning" ng-if="!parseStatus[2]" ng-click="parseFile(report.0.fileID)"><i class="fa fa-check-square-o" aria-hidden="true"></i> Parse</button>
 							<button type="button" class="btn btn-basic" ng-if="parseStatus[2]"><i class="fa fa-check-square-o" aria-hidden="true"></i> Parsed</button> 
-							<button type="button" class="btn btn-primary" ng-if="!processStatus[2]"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Send to MundiPagg</button>
-							<button type="button" class="btn btn-basic" ng-if="processStatus[2]"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Data sent</button>
+							<button type="button" class="btn btn-primary" ng-if="!processStatus[2]&&!processStatus[3]" ng-click="processFile(report.0.fileID)"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Send to MundiPagg</button>
+							<button type="button" class="btn btn-info" ng-if="processStatus[3]&&!processStatus[2]"><span class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></span> Sending</button>
+							<button type="button" class="btn btn-basic" ng-if="processStatus[2]&&!processStatus[3]"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Data sent</button>
 							<br class="rwd-break" /><br class="rwd-break" />
 							<div class="btn-group">
 								<button type="button" class="btn dropdown-toggle" data-toggle="dropdown">

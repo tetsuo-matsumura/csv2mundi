@@ -37,3 +37,11 @@ var app = angular.module('httpService', []);
 			}
 		}
 	}]);
+
+		app.factory('Process', ['$http',function($http) {
+		return {
+			get : function(fileID) {
+				return $http.get('/api/process/' + fileID);
+			}
+		}
+	}]);

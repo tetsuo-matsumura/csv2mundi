@@ -37,7 +37,7 @@ var options = {
 function find100Transactions(fileid){
     return new Promise(function (fulfill, reject){
         fileGlobal = fileid;
-        Report.findOneAndUpdate({fileID: fileid},{status: -1}).exec(function(err){
+        Report.findOneAndUpdate({fileID: fileid},{processStatus: -1}).exec(function(err){
                 if(err) return;
         });
         CreditCardTransactionCollection
@@ -67,7 +67,6 @@ function find100Transactions(fileid){
 // Gets one document by Priority
 
 function findUniqueTransaction(fileid){
-    return new Promise(function (fulfill, reject){
         if(lock) return;
         lock = true;
 
@@ -87,14 +86,13 @@ function findUniqueTransaction(fileid){
                         if(err) return;
                         if(result.n >0) {
                             lock = false;
-                            fulfill(selectTransaction(Data))
+                            selectTransaction(Data);
                         }
                         else return;
                     });
                     
                 };
             });
-    });
 };
 
 // Checks existence of new data.
@@ -102,17 +100,14 @@ function findUniqueTransaction(fileid){
 // If there are no new data and worker is empty, rejects.
 
 function selectTransaction(data){
-    return new Promise(function(fulfill, reject){
         data.forEach((file,index)=>{
             //console.log("Sending: "+count);
-            fulfill(sendRequest(file));
+            sendRequest(file);
             count++;
         });
-    });
 }
 
 function sendRequest(data){
-    return new Promise(function(fulfill, reject){
          options.body = JSON.parse("{\"CreditCardTransactionCollection\":["
          + JSON.stringify(data)
          + "],\"Order\":{\"OrderReference\":\""
@@ -120,36 +115,32 @@ function sendRequest(data){
          + "\"}}");
         request(options, function (error, response, body) {
             if(error){
-                reject(ignoreError(data.fileID, data._id)); 
+                ignoreError(data.fileID, data._id); 
                 // REQUEST ERROR - TRY AGAIN
             } else {
                 if (response.statusCode == 201) {
-                    fulfill(logTransaction(body.CreditCardTransactionResultCollection[0].AcquirerMessage, data.fileID, data._id));
+                    logTransaction(body.CreditCardTransactionResultCollection[0].AcquirerMessage, data.fileID, data._id);
                     // SUCCESS - LOG
                 } else {
                     if(!body.ErrorReport) fulfill(logError(response.statusMessage, data.fileID, data._id));
-                    else fulfill(logError(body.ErrorReport.ErrorItemCollection[0].Description, data.fileID, data._id));
+                    else logError(body.ErrorReport.ErrorItemCollection[0].Description, data.fileID, data._id);
                     // TRANSACTION ERROR - LOG AND IGNORE
                 }
             }
         });
-    });
 };
 
 function watchResponse(fileid){
-    return new Promise(function(fulfill, reject){
         console.log("Queued: " + count);
         if(count<setup.querylimit){
-            if(count==0) reject(logReport(fileid));
-            else fulfill(findUniqueTransaction(fileid));
+            if(count==0) logReport(fileid);
+            else findUniqueTransaction(fileid);
         }else{
             return;
         }
-    });
 };
 
 function logTransaction(mundiResponse,fileid,uniqueid){
-    return new Promise(function(fulfill, reject){
         var date = new Date();
         CreditCardTransactionCollection.findByIdAndUpdate(uniqueid,
                 { 
@@ -160,13 +151,11 @@ function logTransaction(mundiResponse,fileid,uniqueid){
                     count--;
                     reportCount++;
                     if(error) console.log(error);
-                    else fulfill(watchResponse(fileid));
+                    else watchResponse(fileid);
                 });
-    });
 }
 
 function logError(mundiResponse,fileid,uniqueid){
-    return new Promise(function(fulfill, reject){
         var date = new Date();
         errorCount++;
         CreditCardTransactionCollection.findByIdAndUpdate(uniqueid,
@@ -177,13 +166,11 @@ function logError(mundiResponse,fileid,uniqueid){
                 }).exec(function(error){
                     count--;
                     if(error) console.log(error);
-                    else fulfill(watchResponse(fileid));
+                    else watchResponse(fileid);
                 });
-    });
 }
 
 function ignoreError(fileid,uniqueid){
-    return new Promise(function(fulfill, reject){
         var date = new Date();
         errorCount++;
         CreditCardTransactionCollection.findByIdAndUpdate(uniqueid,
@@ -193,9 +180,8 @@ function ignoreError(fileid,uniqueid){
                 }).exec(function(error){
                     count--;
                     if(error) console.log(error);
-                    else fulfill(watchResponse(fileid));
+                    else watchResponse(fileid);
         });
-    });
 }
 
 function logReport(fileid){
@@ -210,16 +196,28 @@ function logReport(fileid){
                 processCount: reportCount
             }
         }).exec(function(err){
-                fulfill();
+            count = 0;
+            lock = false;
+            errorCount = 0;
+            fileGlobal = '';
+            reportCount = 0;
+            
         });
     });
 }
 
-
 // Promise chaining
 RequestProcess.prototype.process = function(req, res) {
-    find100Transactions(req.params.fileID);
-    res.send(0);
-
+  //  Report.find({fileID: fileid, processStatus:-1}).exec(function(err,report){
+   //     return console.log(report.length)
+     //   if (report.length!=0){
+            find100Transactions(req.params.fileID);
+            res.send("ok")
+     //       return ({Response: "OK"});
+    //    }else{
+    //        return({Response: "Busy"});
+    //    }
+   // });
+    
 }
 module.exports = new RequestProcess;
