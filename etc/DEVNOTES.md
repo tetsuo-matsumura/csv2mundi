@@ -163,6 +163,13 @@ Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 
 * Consertei todos os bugs e dei uma arrumada no código. Falta apenas o envio do dado para a API da Mundi e refazer o sistema de paginação do log de transações. Sinto que devo finalizar até semana que vem.
 
+# 22/01
+* Passei os últimos dias testando as respostas da API da Mundipagg. Estou encontrando diversas dificuldades em enviar requests múltiplos. A API não suporta muitos requests múltiplos então tornou-se um gargalo, sendo necessário corrigir o problema no meu end. Uma solução que pensei foi enviar os requests em batches. Uma vez que o problema é a quantidade de requests e não o tamanho deles, isso resolveria o problema. Porém, a API processa os batches mas não envia a resposta para cada transação no CreditCardTransactionResultCollection (apesar de ser uma Array). Também tentei definir um delay entre cada um dos requests, porém, mesmo que os requests estejam 10ms mais adiantados que a API, num arquivo de 1 milhão de linhas acaba-se congestionando a API também. A solução que estou desenvolvendo agora é manter a API ocupada com um número fixo de requests e ir alimentando a API com novos requests conforme ela for respondendo. O fluxo do programa está descrito abaixo. Cada caixa será uma promise e o programa no final darei chain nelas. 
+
+![requester](https://i.imgur.com/Ls1ncGH.png)
+
+* Isso tudo está me lembrando bastante do trabalho em linha de produção nas fábricas do Japão. Esse problema é uma abstração de algo real e me senti feliz em ter percebido essa comparação.
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
