@@ -170,6 +170,11 @@ Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 
 * Isso tudo está me lembrando bastante do trabalho em linha de produção nas fábricas do Japão. Esse problema é uma abstração de algo real e me senti feliz em ter percebido essa comparação.
 
+# 25/01
+* O algoritmo utilizado apresentou um problema: Quando a coleção de documentos do MongoDB estava pesada (100MB+), as queries começaram a demorar mais de 1200ms, fazendo com que a API da Mundipagg respondesse mais rápido que o meu envio. Analisei nos últimos 3 dias soluções diferentes e todas terminavam sendo mais lentas. Utilizei o dia de hoje para reescrever a query e estudar otimizações de queries e consegui otimizar a query de 1200ms para ~20ms, tornando o algoritmo atual utilizável e funcional. Abaixo a velocidade de leitura e escrita do MongoDB numa coleção com mais de 1 milhão de documentos. 
+
+![readspeed](https://i.imgur.com/blCJHDw.gif)
+
 ## Guias
 
 - http://www.luiztools.com.br/post/tutorial-nodejs-com-mongodb/
