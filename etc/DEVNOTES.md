@@ -166,7 +166,7 @@ Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 # 22/01
 * Passei os últimos dias testando as respostas da API da Mundipagg. Estou encontrando diversas dificuldades em enviar requests múltiplos. A API não suporta muitos requests múltiplos então tornou-se um gargalo, sendo necessário corrigir o problema no meu end. Uma solução que pensei foi enviar os requests em batches. Uma vez que o problema é a quantidade de requests e não o tamanho deles, isso resolveria o problema. Porém, a API processa os batches mas não envia a resposta para cada transação no CreditCardTransactionResultCollection (apesar de ser uma Array). Também tentei definir um delay entre cada um dos requests, porém, mesmo que os requests estejam 10ms mais adiantados que a API, num arquivo de 1 milhão de linhas acaba-se congestionando a API também. A solução que estou desenvolvendo agora é manter a API ocupada com um número fixo de requests e ir alimentando a API com novos requests conforme ela for respondendo. O fluxo do programa está descrito abaixo. Cada caixa será uma promise e o programa no final darei chain nelas. 
 
-![requester](https://i.imgur.com/Ls1ncGH.png)
+![requester](https://i.imgur.com/Kr14ddo.png)
 
 * Isso tudo está me lembrando bastante do trabalho em linha de produção nas fábricas do Japão. Esse problema é uma abstração de algo real e me senti feliz em ter percebido essa comparação.
 
@@ -174,6 +174,8 @@ Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 * O algoritmo utilizado apresentou um problema: Quando a coleção de documentos do MongoDB estava pesada (100MB+), as queries começaram a demorar mais de 1200ms, fazendo com que a API da Mundipagg respondesse mais rápido que o meu envio. Analisei nos últimos 3 dias soluções diferentes e todas terminavam sendo mais lentas. Utilizei o dia de hoje para reescrever a query e estudar otimizações de queries e consegui otimizar a query de 1200ms para ~20ms, tornando o algoritmo atual utilizável e funcional. Abaixo a velocidade de leitura e escrita do MongoDB numa coleção com mais de 1 milhão de documentos. 
 
 ![readspeed](https://i.imgur.com/blCJHDw.gif)
+
+* Agora é só integrar tudo ao front, criar a função de gerar relatórios e fazer a testagem final.
 
 ## Guias
 
