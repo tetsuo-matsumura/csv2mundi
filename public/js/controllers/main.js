@@ -8,11 +8,15 @@ angular.module('fileController', [])
 		Files.get()
 			.success(function(data) {
 				$scope.files = data;
+				$scope.process = [];
 				$scope.waiting = [];
 				$scope.ok = [];
 				$scope.error = [];
 
 				for (var i = 0, len = data.length; i < len; i++) {
+					if(data[i].status == -1){
+					$scope.process.push(data[i]);
+					}
 					if(data[i].status == 0){
 					$scope.waiting.push(data[i]);
 					}
@@ -38,8 +42,8 @@ angular.module('fileController', [])
 			Process.get(fileID)
 				.success(function(res) {
 					$scope.loading = false;
-					console.log(res);
 					$rootScope.$broadcast('RequestReloadReport', {fileID: fileID});
+					console.log(res);
 				});
 
 		};
@@ -48,10 +52,14 @@ angular.module('fileController', [])
 			Files.get()
 				.success(function(data) {
 					$scope.files = data;
+					$scope.process = [];
 					$scope.waiting = [];
 					$scope.ok = [];
 					$scope.error = [];
 					for (var i = 0, len = data.length; i < len; i++) {
+						if(data[i].status == -1){
+						$scope.process.push(data[i]);
+						}
 						if(data[i].status == 0){
 						$scope.waiting.push(data[i]);
 						}
@@ -110,6 +118,10 @@ angular.module('fileController', [])
 				$rootScope.$broadcast('getTransaction', {fileID: data[0].fileID,page: 1});
 			});
 		});
+
+		$scope.reloadFiles = function(){
+			$rootScope.$broadcast('RequestReload');
+		}
 
 		$scope.deleteFile = function(fileID) {
 			$scope.loading = true;

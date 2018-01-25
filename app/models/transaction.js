@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = mongoose.model('CreditCardTransactionCollection', {
-        Priority: Number,
+        Priority: { type: [Number], index: true },
         AmountInCents: Number,
         CreditCard: {
             CreditCardBrand: String,

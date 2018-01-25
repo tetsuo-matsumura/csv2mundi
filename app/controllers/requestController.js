@@ -37,13 +37,14 @@ var options = {
 function find100Transactions(fileid){
     return new Promise(function (fulfill, reject){
         fileGlobal = fileid;
-        Report.findOneAndUpdate({fileID: fileid},{processStatus: -1}).exec(function(err){
+        Report.findOneAndUpdate({fileID: fileid},{processStatus: -1,status:-1}).exec(function(err){
                 if(err) return;
         });
         CreditCardTransactionCollection
             .find({$or:[{"fileID": fileid, "processStatus":0}, {"fileID": fileid, "processStatus":-1}]})
             .sort("Priority")
             .limit(100)
+            .lean()
             .exec(function(err, Data){
                 if(err) return;
                 else {
@@ -74,6 +75,7 @@ function findUniqueTransaction(fileid){
             .find({"fileID": fileid, "processStatus":0})
             .sort("Priority")
             .limit(10)
+            .lean()
             .exec(function(err, Data){
                 if(err) return;
                 else {
@@ -201,7 +203,7 @@ function logReport(fileid){
             errorCount = 0;
             fileGlobal = '';
             reportCount = 0;
-            
+            return;
         });
     });
 }
@@ -212,7 +214,7 @@ RequestProcess.prototype.process = function(req, res) {
    //     return console.log(report.length)
      //   if (report.length!=0){
             find100Transactions(req.params.fileID);
-            res.send("ok")
+            res.send("ok");
      //       return ({Response: "OK"});
     //    }else{
     //        return({Response: "Busy"});

@@ -45,8 +45,8 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
          		</button>
-         		<a class="navbar-brand" href="/" ng-if="!parsing||!processing">csv2mundi</a>
-         		<a class="navbar-brand" href="#" ng-if="parsing||processing">csv2mundi</a>
+         		<a class="navbar-brand" href="/" ng-if="!parsing&&!processing">csv2mundi</a>
+         		<a class="navbar-brand" href="#" ng-if="parsing&&processing">csv2mundi</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -148,7 +148,7 @@
 							<button type="button" class="btn btn-warning" ng-if="!parseStatus[2]" ng-click="parseFile(report.0.fileID)"><i class="fa fa-check-square-o" aria-hidden="true"></i> Parse</button>
 							<button type="button" class="btn btn-basic" ng-if="parseStatus[2]"><i class="fa fa-check-square-o" aria-hidden="true"></i> Parsed</button> 
 							<button type="button" class="btn btn-primary" ng-if="!processStatus[2]&&!processStatus[3]" ng-click="processFile(report.0.fileID)"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Send to MundiPagg</button>
-							<button type="button" class="btn btn-info" ng-if="processStatus[3]&&!processStatus[2]"><span class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></span> Sending</button>
+							<button type="button" class="btn btn-info" ng-if="processStatus[3]&&!processStatus[2]"><span class="fa fa-circle-o-notch fa-spin fa-3x"></span> Sending</button>
 							<button type="button" class="btn btn-basic" ng-if="processStatus[2]&&!processStatus[3]"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Data sent</button>
 							<br class="rwd-break" /><br class="rwd-break" />
 							<div class="btn-group">
@@ -242,7 +242,7 @@
 		<div class="parsing" ng-if="parsing">
 			<i class="fa fa-clock-o" aria-hidden="true"></i><br />Parsing, please wait...
 		</div>
-		<div class="closereport" data-toggle="collapse" data-target="#filereport,#main" ng-if="!parsing">
+		<div class="closereport" data-toggle="collapse" data-target="#filereport,#main" ng-if="!parsing" ng-click="reloadFiles()">
 			<i class="fa fa-chevron-up" aria-hidden="true"></i><br />Close report
 		</div>
 	</div>
@@ -260,7 +260,7 @@
 					<div class="col-md-4">
 						<div class="panel panel-danger col-centered">
 							<div class="panel-heading">
-									<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occured!
+									<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occured
 							</div>
 							<div class="panel-body">
 								<div class="row">
@@ -284,11 +284,39 @@
 						</div>
 					</div>
 				</div>
+				<div ng-repeat="file in process">
+					<div class="col-md-4">
+						<div class="panel panel-primary col-centered">
+							<div class="panel-heading">
+									<i class="fa fa-check-circle-o" aria-hidden="true"></i> Processing
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-sm-4 text-center">
+										<i class="fa fa-file-text-o fa-5x" aria-hidden="true"></i>
+									</div>
+									<div class="col-sm8 fileinfo">
+										<p class="help-block"><strong>Filename:</strong> {{process[$index].name}}</p>
+										<p class="help-block"><strong>Path:</strong> {{process[$index].path}}</p>
+										<button type="button" class="btn btn-info btn-xs" data-toggle="collapse" data-target="#filereport,#main" ng-click="openReport(process[$index].fileID)">Open</button> 
+										<button type="button" class="btn btn-danger btn-xs" data-toggle="collapse" data-target="#process{{$index}}">Delete</button>
+										<div id="process{{$index}}" class="collapse">
+											<p class="alert alert-danger deletebox">Deleting {{process[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
+											<button type="button" class="btn btn-default btn-s" data-toggle="collapse" data-target="#process{{$index}}">Back</button>
+											<button type="button" class="btn btn-danger btn-s" ng-click="deleteFile(process[$index].fileID)">Delete</button>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div ng-repeat="file in waiting">
 					<div class="col-md-4">
 						<div class="panel panel-info col-centered">
 							<div class="panel-heading">
-									<i class="fa fa-check-circle-o" aria-hidden="true"></i> Waiting!
+									<i class="fa fa-check-circle-o" aria-hidden="true"></i> Waiting
 							</div>
 							<div class="panel-body">
 								<div class="row">
@@ -316,7 +344,7 @@
 					<div class="col-md-4">
 						<div class="panel panel-success col-centered">
 							<div class="panel-heading">
-									<i class="fa fa-check-circle" aria-hidden="true"></i> Completed!
+									<i class="fa fa-check-circle" aria-hidden="true"></i> Completed
 							</div>
 							<div class="panel-body">
 								<div class="row">
@@ -326,7 +354,7 @@
 									<div class="col-sm8 fileinfo">
 										<p class="help-block"><strong>Filename:</strong> {{ok[$index].name}}</p>
 										<p class="help-block"><strong>Path:</strong> {{ok[$index].path}}</p>
-										<button type="button" class="btn btn-info btn-xs" data-toggle="collapse" data-target="#filereport,#main" ng-click="openReport(ok[$index].fileID)">Open</button> 
+										<button type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#filereport,#main" ng-click="openReport(ok[$index].fileID)">Open</button> 
 										<button type="button" class="btn btn-danger btn-xs" data-toggle="collapse" data-target="#ok{{$index}}">Delete</button>
 										<div id="ok{{$index}}" class="collapse">
 											<p class="alert alert-danger deletebox">Deleting {{ok[$index].path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
