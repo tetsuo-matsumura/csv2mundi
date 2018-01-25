@@ -175,6 +175,8 @@ Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 
 ![readspeed](https://i.imgur.com/blCJHDw.gif)
 
+![working](https://i.imgur.com/jUZcPfe.gif)
+
 * Agora é só integrar tudo ao front, criar a função de gerar relatórios e fazer a testagem final.
 
 ## Guias
