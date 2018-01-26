@@ -1,6 +1,6 @@
 angular.module('fileController', [])
 
-	.controller('mainController', ['$scope','$http', '$rootScope','Files', 'Reports', 'Parse', 'Transaction', 'Process', function($scope, $http, $rootScope, Files, Reports, Parse, Transaction, Process) {
+	.controller('mainController', ['$scope','$http', '$rootScope', '$timeout','Files', 'Reports', 'Parse', 'Transaction', 'Process', function($scope, $http, $rootScope, $timeout, Files, Reports, Parse, Transaction, Process) {
 		
 		$scope.loading = true;
 		$scope.parsing = false;
@@ -27,7 +27,7 @@ angular.module('fileController', [])
 					$scope.error.push(data[i]);
 					}
 				}
-				console.log(data);
+				
 				$scope.loading = false;
 				if ($scope.files.length == 0){
 					$scope.isEmpty = false;
@@ -37,15 +37,37 @@ angular.module('fileController', [])
 			});
 
 		$scope.processFile = function(fileID) {
+			if(!$scope.parseStatus[2]){
+				//$(".alert").alert() = true; 
+				$scope.ReportMessage = "Error: You need to parse the file before sendind it.";
+				$timeout(function(){ $scope.ReportMessage = null; }, 5000);
+				
+			} else {
 			$scope.loading = true;
-			$scope.processing = true;
-			Process.get(fileID)
-				.success(function(res) {
-					$scope.loading = false;
-					$rootScope.$broadcast('RequestReloadReport', {fileID: fileID});
-					console.log(res);
-				});
+			Files.get()
+				.success(function(data) {
+				var processingCount = 0;
 
+				for (var i = 0, len = data.length; i < len; i++) {
+					if(data[i].status == -1) processingCount++;
+				}
+
+				if(!processingCount){
+					Process.get(fileID)
+						.success(function(res) {
+							$scope.processing = true;
+							$scope.loading = false;
+							$rootScope.$broadcast('RequestReloadReport', {fileID: fileID});
+					});
+				}else{
+					$scope.loading = false;
+					$scope.ReportMessage = "Error: You can only process one file at a time.";
+					$timeout(function(){ $scope.ReportMessage = null; }, 5000);
+				}
+
+
+			});
+			}
 		};
 
 		$rootScope.$on('RequestReload', function(){
@@ -138,7 +160,6 @@ angular.module('fileController', [])
 			$scope.loading = true;
 			Transaction.get(opt.fileID,0)
 				.success(function(data){
-					console.log(data);
 					$scope.loading = false;
 					$scope.transaction = data;
 					$scope.page = opt.page;
