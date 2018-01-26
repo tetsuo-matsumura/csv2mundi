@@ -48,7 +48,7 @@ Não sei se seria melhor usar um twitter ou um moleskine para isso, como é pra 
 
 * Estou lendo sobre streams e execuções synch/asynch. Aparentemente será impossível continuar sem o conhecimento disso.
 
-* Já tenho conhecimento para devar a solução mínima, isto é, com tempo de processamento não otimizado. Este será o MVP e devo terminar hoje se tudo der certo.
+* Já tenho conhecimento para devar a solução mínima, isto é, com tempo de processamento não otimizado. Este será o MVP e devo terminar hoje se tudo der certo. (26/01: NOPE)
 
 
 ## 29/12
@@ -178,6 +178,11 @@ Imagem: Importando 2.1GB com o mongoimport em pouco mais de 2 minutos.
 ![working](https://i.imgur.com/jUZcPfe.gif)
 
 * Agora é só integrar tudo ao front, criar a função de gerar relatórios e fazer a testagem final.
+
+# 26/01
+* Amanhã faz um mês desde que recebi o desafio. A versão mínima já está pronta e disponível no GIT. Posso entregar desse jeito porém quero realizar mais testes e melhorar um pouco o código antes de enviar o e-mail avisando que está tudo pronto.
+
+* Foram 30 dias longos de muito trabalho mas eu aprendi MUITA coisa. Até o início desse DEVNOTE meus conhecimentos eram quase nulos. Não fazia ideia do que era ou como funcionavam async, callbacks, promises, node, express, angular, html5, etc. Estou um pouco chateado que os esforços empregados nesse projeto sejam em uma ferramenta sem usuário, porém, o valor de aprendizado foi imenso. 
 
 ## Guias
 
