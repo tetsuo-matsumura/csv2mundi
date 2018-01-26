@@ -1,6 +1,6 @@
 # Desafio Técnico Mundipagg
 
-Aplicação que processa dados em CSV de pagamentos de cartões de créditos através da API da MundiPagg.
+Ferramenta de processamento de arquivos .csv através da API Legacy da Mundipagg para catalogação de arquivos e geração de relatórios.
 
 ## Tecnologias
  - Plataforma
