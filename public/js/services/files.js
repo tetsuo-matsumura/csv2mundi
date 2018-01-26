@@ -18,6 +18,9 @@ var app = angular.module('httpService', []);
 		return {
 			get : function(fileID) {
 				return $http.get('/api/reports/' + fileID);
+			},
+			create : function(fileID){
+				return $http.get('/api/reports/create/' + fileID)
 			}
 		}
 	}]);

@@ -168,9 +168,11 @@
 							<button type="button" class="btn btn-primary" ng-if="!processStatus[2]&&!processStatus[3]" ng-click="processFile(report.0.fileID)"><i class="fa fa-cloud-upload" aria-hidden="true"></i> Send to MundiPagg</button>
 							<button type="button" class="btn btn-info" ng-if="processStatus[3]&&!processStatus[2]"><span class="fa fa-circle-o-notch fa-spin fa-3x"></span> Sending</button>
 							<br class="rwd-break" /><br class="rwd-break" />
-							<button type="button" class="btn btn-warning" ng-if="processStatus[2]&&!processStatus[3]">
-								<i class="fa fa-file" aria-hidden="true"></i> Get full report
+							<a href="/reports/{{report.0.fileID}}.html" target="_blank"> 
+							<button type="button" class="btn btn-warning" ng-if="processStatus[2]&&!processStatus[3]&&report.0.hasReport">
+								<i class="fa fa-file" aria-hidden="true"></i> View full report
 							</button>
+						</a>
 							<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#delete{{report.0.fileID}}">
 								Delete
 							</button>
@@ -181,14 +183,18 @@
 								<button type="button" class="btn btn-danger btn-s" ng-click="deleteFile(report.0.fileID)" data-toggle="collapse" data-target="#filereport,#main,#delete{{report.0.fileID}}">Delete</button>
 								</p>
 							</div>
-							<div class="alert alert-danger" ng-if="ReportMessage">
+							<p class="alert alert-danger reportbox" ng-if="ReportMessage">
 								{{ReportMessage}}
-							</div>
+							</p>
+
 						</div>
 				</div>
 				<div class="col-sm-4 text-center">
-					<div id="parseBar"></div>
-					<div id="processBar"></div>
+					<p class="alert alert-warning reportbox" ng-if="!report.0.hasReport&&processStatus[2]&&!processStatus[3]">
+						<span class="fa fa-file-text-o fa-5x" aria-hidden="true"></span><br /><br />
+						This file doesn't have a full report yet.<br />Click on "Create report" to proceed.<br /><br />
+						<button type="button" class="btn btn-warning btn-s" ng-click="createReport(report.0.fileID)">Create report</button>
+					</p>
 				</div>
 			</div>
 			<!--

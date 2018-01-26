@@ -6,8 +6,10 @@ var multipartyMiddleware = multiparty();
 var FileUploadController = require('./controllers/uploadController');
 var ParseCSVController = require('./controllers/parseController');
 var RequestProcess = require('./controllers/requestController');
+var ReportController = require('./controllers/reportController');
 
-// CONTROLLERS
+
+// SUB CONTROLLERS
 
 function getFiles(res) {
     Report.find({}).exec(function (err, file) {
@@ -54,6 +56,8 @@ module.exports = function (app) {
         getReports(req, res);
     });
 
+    app.get('/api/reports/create/:fileID', ReportController.createReport);
+
     app.get('/api/transactions/:fileID/:page', function (req, res) {
         getTransactions(req, res);
     });
@@ -63,9 +67,13 @@ module.exports = function (app) {
     app.get('/api/process/:fileID', RequestProcess.process);
 
     app.get('/api/process/status/:fileID', function(req, res){
-        Transaction.count({fileID: req.params.fileID,processStatus:0}).exec(function (err, count) {
+        Transaction.count({$or:[{"fileID": req.params.fileID, "processStatus":0}, {"fileID": req.params.fileID, "processStatus":-1}]}).exec(function (err, count) {
             if (err) res.send(err);
+            if(count==null){
+                res.json(0);
+            }else{
             res.json(count);
+            }
         });
     });
 
@@ -97,26 +105,23 @@ module.exports = function (app) {
     app.delete('/api/files/:fileID', function (req, res) {
         //SELF CONTAINED CONTROLLER - CONSIDER CREATING UNIQUE CONTROLLER ON FUTURE COMMITS
         Report.find({fileID: req.params.fileID}).exec(function (err, file) {
-            if (err) {
-                res.send(err);
+            if (err) res.send(err);
+            if(file[0].hasReport){
+                fs.unlink('./public/reports/'+req.params.fileID+'.html', function(err){
+                    if (err) res.send(err);
+                });
             }
+
             fs.unlink(file[0].path, function(err){
-                if (err) {
-                res.send(err);
-                }
-                console.log("File " + file[0].path + " was deleted!");
-                Report.remove({
-                    fileID: req.params.fileID
-                }, function (err, file) {
-                    if (err){
-                        res.send(err);
-                    }
-                    Transaction.remove({
-                        fileID: req.params.fileID
-                    }, function(err, file){
-                        if (err){
-                            res.send(err);
-                        }
+                if (err) res.send(err);
+
+                console.log("File " + file[0].path + " was scheduled for deletion!");
+                Report.remove({fileID: req.params.fileID}, function (err, file) {
+                    if (err) res.send(err);
+
+                    Transaction.remove({fileID: req.params.fileID}, function(err, file){
+                        if (err) res.send(err);
+
                         getFiles(res);
                     });
                 });

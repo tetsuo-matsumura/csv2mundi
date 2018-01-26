@@ -236,4 +236,17 @@ angular.module('fileController', [])
 				});
 
 		};
+
+		$scope.createReport = function(fileID) {
+		$scope.loading = true;
+		Reports.create(fileID)
+			.success(function(data) {
+				
+				$timeout(function(){
+					$rootScope.$broadcast('RequestReloadReport', {fileID: fileID});
+					$scope.loading = false;
+				},2000);
+		});
+	};
+
 }]);

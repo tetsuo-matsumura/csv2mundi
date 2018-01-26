@@ -4,7 +4,6 @@ var setup = require('../../setup.js');
 var CreditCardTransactionCollection = require('../models/transaction.js');
 var Report = require('../models/report.js')
 var mongoose = require('mongoose');
-// Mongoose connect
 
 // Program variables
 var count = 0;
@@ -42,7 +41,7 @@ function find100Transactions(fileid){
         });
         CreditCardTransactionCollection
             .find({$or:[{"fileID": fileid, "processStatus":0}, {"fileID": fileid, "processStatus":-1}]})
-            .sort("Priority")
+            .sort({Priority:1})
             .limit(100)
             .lean()
             .exec(function(err, Data){
@@ -73,7 +72,7 @@ function findUniqueTransaction(fileid){
 
         CreditCardTransactionCollection
             .find({"fileID": fileid, "processStatus":0})
-            .sort("Priority")
+            .sort({Priority:1})
             .limit(10)
             .lean()
             .exec(function(err, Data){
@@ -208,18 +207,11 @@ function logReport(fileid){
     });
 }
 
-// Promise chaining
 RequestProcess.prototype.process = function(req, res) {
-  //  Report.find({fileID: fileid, processStatus:-1}).exec(function(err,report){
-   //     return console.log(report.length)
-     //   if (report.length!=0){
+
             find100Transactions(req.params.fileID);
             res.send("ok");
-     //       return ({Response: "OK"});
-    //    }else{
-    //        return({Response: "Busy"});
-    //    }
-   // });
-    
+
 }
+
 module.exports = new RequestProcess;

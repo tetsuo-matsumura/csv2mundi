@@ -19,6 +19,10 @@ p.help-block {
     margin-top: 10px;
     margin-right: 15px;
 }
+.reportbox{
+    margin-top: 10px;
+    margin-right: 15px;
+}
 .nopadding {
    padding: 0 !important;
    margin: 0 !important;
@@ -29,6 +33,10 @@ p.help-block {
 .badge {
     color:#777;
 }
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
+
 /*Header*/
 .navbar-brand{padding-left:30px;}
 .nav{padding-left:30px;padding-right:30px;margin:0px;}
