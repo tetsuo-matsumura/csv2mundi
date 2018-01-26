@@ -53,8 +53,9 @@ angular.module('fileController', [])
 				}
 
 				if(!processingCount){
-					Process.get(fileID)
+					Process.create(fileID)
 						.success(function(res) {
+							$scope.processingRowCount = null;
 							$scope.processing = true;
 							$scope.loading = false;
 							$rootScope.$broadcast('RequestReloadReport', {fileID: fileID});
@@ -68,6 +69,19 @@ angular.module('fileController', [])
 
 			});
 			}
+		};
+
+		$scope.getProcess = function(fileID) {
+			$scope.loading = true;
+			$scope.processingRowCount = 0;
+			Process.get(fileID)
+				.success(function(count){
+					$scope.loading = false;
+					$scope.processingRowCount = count;
+					$rootScope.$broadcast('RequestReloadReport', {fileID: fileID});
+			});
+
+
 		};
 
 		$rootScope.$on('RequestReload', function(){

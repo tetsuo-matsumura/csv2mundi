@@ -8,6 +8,7 @@ module.exports = mongoose.model('Report', {
 	dateProcess: Date,
 	rowCount: String,
 	processCount: Number,
+	tempProcessCount: Number,
 	rowErrorCount: String,
 	processErrorCount: Number,
 	status: Number,

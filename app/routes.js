@@ -62,6 +62,13 @@ module.exports = function (app) {
 
     app.get('/api/process/:fileID', RequestProcess.process);
 
+    app.get('/api/process/status/:fileID', function(req, res){
+        Transaction.count({fileID: req.params.fileID,processStatus:0}).exec(function (err, count) {
+            if (err) res.send(err);
+            res.json(count);
+        });
+    });
+
 
 // POST ROUTES
 

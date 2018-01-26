@@ -128,9 +128,27 @@
 						    </thead>
 						    <tbody>
 						    <tr>
-						    	<td>
+						    	<td ng-if="!processStatus[3]">
 						    		<dt>Processed count</dt>
 						    		<dd>{{report.0.processCount}}</dd>
+						    	</td>
+						    	<td ng-if="processStatus[3] && !processingRowCount">
+						    		<dt>Processed count</dt>
+						    		<dd>
+						    			<button type="button" class="btn btn-info btn-xs" ng-click="getProcess(report.0.fileID)">
+						    				<i class="fa fa-refresh" aria-hidden="true"></i> 
+
+						    				Click here to retrieve remaining rows.
+						    			</button>
+						    		</dd>
+						    	</td>
+						    	<td ng-if="processStatus[3] && processingRowCount">
+						    		<dt>Processed count</dt>
+						    		<dd>{{processingRowCount}} rows remaining.
+						    			<button type="button" class="btn btn-info btn-xs" ng-click="getProcess(report.0.fileID)">
+						    				<i class="fa fa-refresh" aria-hidden="true"></i>
+						    			</button>
+						    		</dd>
 						    	</td>
 						    	<td>
 						    		<dt>Error count</dt>
@@ -158,7 +176,7 @@
 							</button>
 
 							<div id="delete{{report.0.fileID}}" class="collapse">
-								<p class="alert alert-danger deletebox">Deleting {{report.0.path}} and removing it from the database. <br />This is irreversible, proceed?<br /><br />
+								<p class="alert alert-danger deletebox">Deleting a processing file might cause unpredictable errors and its irreversible, proceed?.<br /><br />
 								<button type="button" class="btn btn-default btn-s" data-toggle="collapse" data-target="#delete{{report.0.fileID}}">Back</button>
 								<button type="button" class="btn btn-danger btn-s" ng-click="deleteFile(report.0.fileID)" data-toggle="collapse" data-target="#filereport,#main,#delete{{report.0.fileID}}">Delete</button>
 								</p>
