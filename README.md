@@ -30,7 +30,7 @@ Aplicação que processa dados em CSV de pagamentos de cartões de créditos atr
  
 `npm install`
 
-Edite o arquivo `setup.js` com a URL do seu MongoDB. O MongoDB deve estar ouvindo a porta `27017` (default).
+Edite o arquivo `setup.js` com a URL do seu MongoDB e sua Merchant-Key. O MongoDB deve estar ouvindo a porta `27017` (default).
 
 ## Utilização
 
