@@ -28,12 +28,10 @@ var options = {
     json: true
 };
 
-// Promises
-
 // Receive fileid from main application
-// Gets one document by Priority
+// Fills pool with 100 documents by Priority
 
-function find100Transactions(fileid){
+function startRequest(fileid){
     return new Promise(function (fulfill, reject){
         fileGlobal = fileid;
         Report.findOneAndUpdate({fileID: fileid},{processStatus: -1,status:-1}).exec(function(err){
@@ -63,17 +61,16 @@ function find100Transactions(fileid){
     });
 };
 
-// Receive fileid from main application
-// Gets one document by Priority
+// Gets documents by Priority
 
-function findUniqueTransaction(fileid){
+function findTransactions(fileid){
         if(lock) return;
         lock = true;
 
         CreditCardTransactionCollection
             .find({"fileID": fileid, "processStatus":0})
             .sort({Priority:1})
-            .limit(10)
+            .limit(setup.simulimit)
             .lean()
             .exec(function(err, Data){
                 if(err) return;
@@ -96,17 +93,17 @@ function findUniqueTransaction(fileid){
             });
 };
 
-// Checks existence of new data.
-// If it's false, checks if worker is empty.
-// If there are no new data and worker is empty, rejects.
+// Receives array of documents and sends them one by one, counting the total
 
 function selectTransaction(data){
         data.forEach((file,index)=>{
-            //console.log("Sending: "+count);
             sendRequest(file);
             count++;
         });
 }
+
+// Receives unique document, inject its content into JSON,
+// sends to API and parse response. 
 
 function sendRequest(data){
          options.body = JSON.parse("{\"CreditCardTransactionCollection\":["
@@ -131,15 +128,21 @@ function sendRequest(data){
         });
 };
 
+
+// Checks if pool is full, rejecting new requests
+// If pool is empty calls the closing function
+
 function watchResponse(fileid){
         console.log("Queued: " + count);
         if(count<setup.querylimit){
             if(count==0) logReport(fileid);
-            else findUniqueTransaction(fileid);
+            else findTransactions(fileid);
         }else{
             return;
         }
 };
+
+// Update document with it's response from API
 
 function logTransaction(mundiResponse,fileid,uniqueid){
         var date = new Date();
@@ -156,6 +159,8 @@ function logTransaction(mundiResponse,fileid,uniqueid){
                 });
 }
 
+// Update document with it's response from API
+
 function logError(mundiResponse,fileid,uniqueid){
         var date = new Date();
         errorCount++;
@@ -171,6 +176,8 @@ function logError(mundiResponse,fileid,uniqueid){
                 });
 }
 
+// Toggle document's status to 0 to have it sent again
+
 function ignoreError(fileid,uniqueid){
         var date = new Date();
         errorCount++;
@@ -184,6 +191,9 @@ function ignoreError(fileid,uniqueid){
                     else watchResponse(fileid);
         });
 }
+
+// Clear the variables, update report with the processing info
+// finishes program
 
 function logReport(fileid){
     return new Promise(function(fulfill,reject){
@@ -209,7 +219,7 @@ function logReport(fileid){
 
 RequestProcess.prototype.process = function(req, res) {
 
-            find100Transactions(req.params.fileID);
+            startRequest(req.params.fileID);
             res.send("ok");
 
 }
