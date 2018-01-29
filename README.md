@@ -36,3 +36,8 @@ O MongoDB deve estar ouvindo a porta `27017` (default).
 ## Utilização
 
 `npm start` ou `node app.js`
+
+## Extra
+
+Para utilizar o gerador de csv localizado com `etc/tools/generate-csv` utilize:  
+`node generate-csv.js <quantidade_de_linhas> <"debug" ou 1 para debug> <nome_do_arquivo_de_saida>`
